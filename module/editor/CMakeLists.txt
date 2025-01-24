@@ -1,5 +1,5 @@
 defineModule("Editor")
-addModuleDependency("Editor" "Core")
+addModuleDependency("Editor" "CoreEditor")
 addModuleDependency("Editor" "Game")
 
 defineExecutable("EditorTarget")

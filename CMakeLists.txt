@@ -10,5 +10,6 @@ include("${CMAKE_CURRENT_LIST_DIR}/cmake/raylib.cmake")
 include("${CMAKE_CURRENT_LIST_DIR}/cmake/module.cmake")
 
 add_subdirectory("module/core")
+add_subdirectory("module/coreEditor")
 add_subdirectory("module/game")
 add_subdirectory("module/editor")
