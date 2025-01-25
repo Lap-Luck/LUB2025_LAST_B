@@ -18,6 +18,22 @@ public:
     }
 };
 
+class CutLine {
+public:
+    Vec2f A;
+    Vec2f B;
+    CutLine(Vec2f _A,float _len) {
+        A=_A;
+        B=_A+Vec2f(0,_len);
+
+    }
+    void draw() {
+        DrawLine(A.x,A.y,B.x,B.y,PINK);
+    }
+};
+
+
+
 #define X_ID 0
 #define Y_ID 1
 
@@ -26,10 +42,13 @@ public:
     Vector2 pos;
     int mask[16][16];
     std::vector<ObSegment> segments;
+    float scale;
+    bool s=true;
 
-    Obstacle(Image img) {
+    Obstacle(Image img,Vector2 _pos,float _scale) {
         //cassert;
-
+        pos=_pos;
+        scale=_scale;
 
         if constexpr (OBSTACLE_DEBUG) { TraceLog(LOG_INFO, "image"); };
 
@@ -134,23 +153,28 @@ public:
         };
     }
 
-    void draw() {
-        for (int y: range(16)) {
-            for (int x: range(16)) {
-                if (mask[x][y] == 1) {
+    Rectangle box() {
+        return Rectangle(pos.x,pos.y,scale*16,scale*16);
+    }
 
-                    DrawRectangleLines(pos.x+x*20.0,pos.y+y*20.0,20,20,Color((x*64)%255,255,0,255));
-                    //DrawRectangleLines(pos.x+x*20.0,pos.y+y*20.0,20,20,Color((i%7)*10,i,0,255));
+    void draw() {
+        if (s) {
+            for (int y: range(16)) {
+                for (int x: range(16)) {
+                    if (mask[x][y] == 1) {
+
+                        DrawRectangleLines(pos.x+x*scale,pos.y+y*scale,scale,scale,Color((x*64)%255,255,0,255));
+                        //DrawRectangleLines(pos.x+x*20.0,pos.y+y*20.0,20,20,Color((i%7)*10,i,0,255));
+                    }
+
                 }
+            }
+            for (int s_id:range(segments.size())) {
+                ObSegment s=segments[s_id];
+                DrawLine(pos.x+((float)s.ax+0.5)*scale,pos.y+((float)s.ay+0.5)*scale,pos.x+((float)s.bx+0.5)*scale,pos.y+((float)s.by+0.5)*scale,RED);
 
             }
         }
-        for (int s_id:range(segments.size())) {
-            ObSegment s=segments[s_id];
-            DrawLine(((float)s.ax+0.5)*20.0,((float)s.ay+0.5)*20.0,((float)s.bx+0.5)*20.0,((float)s.by+0.5)*20.0,RED);
-
-        }
-
     }
 
 };
