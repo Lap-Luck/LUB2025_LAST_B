@@ -33,6 +33,5 @@ void Game::onDraw()
         o.draw();
     }
 
-
     DrawFPS(10, 10);
 }

@@ -23,9 +23,10 @@ public:
     }
 
     void frame(std::vector<Obstacle> &obs){
-        if (IsKeyDown(KEY_RIGHT)) vel.x=Lerp(vel.x,100.0,0.1f);
-        if (IsKeyDown(KEY_LEFT)) vel.x=Lerp(vel.x,-100.0,0.1f);
+        if (IsKeyDown(KEY_RIGHT)) vel.x=Lerp(vel.x,2000.0,0.001f);
+        if (IsKeyDown(KEY_LEFT)) vel.x=Lerp(vel.x,-2000.0,0.001f);
 
+        vel.y=Lerp(vel.y,-100.0,0.02f);
         pos=Vector2Add(pos,Vector2Scale(vel,0.016));
 
         for (int o_id:range(obs.size())) {
@@ -41,6 +42,14 @@ public:
                     float pen=(r-d)*1.001;
                     Vec2f pc=pos-C;
                     pos=pos+(((pc).normalized())*pen);
+                    Vec2f AB=(A-B);
+                    if (AB.dotProduct(Vec2f(0,1))<0.01f) {
+                        vel.y+=fmax(0.0,vel.y);
+                    }
+                    if (pc.dotProduct(Vec2f(vel.x,0))<0) {
+                        vel.y+=fabs(vel.x)*0.5;
+                        vel.x=-vel.x*0.99;
+                    }
 
                 }
             }
