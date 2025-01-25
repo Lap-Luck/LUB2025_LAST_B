@@ -41,17 +41,10 @@ public:
         }
 
 
-        std::string s="false";
-        if (flag_mirror) s="true";
-        inSerialize->propertyEnum("mirror",{"false","true"},s);
-        flag_mirror = s=="true";
-
-
-
-
-
-
-
+        std::string s="NormalOrientation";
+        if (flag_mirror) s="FlipHorizontal";
+        inSerialize->propertyEnum("orientation",{"NormalOrientation","FlipHorizontal"},s);
+        flag_mirror = s=="FlipHorizontal";
     }
 
 };
