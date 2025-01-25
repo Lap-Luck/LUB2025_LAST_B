@@ -2,6 +2,10 @@
 
 #include <stdlib.h>
 
+#include "inputManager.hpp"
+#include "obstacle.hpp"
+#include "vec2.hpp"
+
 class BubbleP {
 public:
     Vec2f pos;

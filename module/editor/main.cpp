@@ -27,7 +27,7 @@ int main(void)
         {
             SetTargetFPS(60);
             ChangeDirectory("assets");
-            state.assets.unknownTexture = LoadTexture("unknown.png");
+            state.assets.load();
         }
     );
 

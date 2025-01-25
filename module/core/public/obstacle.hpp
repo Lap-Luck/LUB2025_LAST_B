@@ -14,6 +14,7 @@ class ObSegment
 public:
     int ax, ay, bx, by {};
 
+
     ObSegment(int _ax, int _ay, int _bx, int _by) : ax(_ax), ay(_ay), bx(_bx), by(_by) {}
 };
 
@@ -21,6 +22,15 @@ class CutLine
 {
 public:
     Vec2f A, B;
+
+    using CutLineId = int;
+    static CutLineId globalIdCounter;
+    CutLineId unique_id {};
+
+    struct
+    {
+        bool pendingDestroy {false};
+    } flags;
 
     CutLine(Vec2f _A, float _len)
     {
