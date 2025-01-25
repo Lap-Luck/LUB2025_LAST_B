@@ -1,18 +1,13 @@
 #pragma once
-#include "actor.hpp"
-#include "gameState.hpp"
-#include "vec2.hpp"
 
-
-
-class SpikeActor : public Actor
+class DoorActor : public Actor
 {
 public:
     CutLine::CutLineId cutId {};
     Obstacle::ObstacleId  obstalceId {};
 
-    SpikeActor(GameState& inState,Vec2f inPos) : Actor(inState,inPos) {}
-    ~SpikeActor()
+    DoorActor(GameState& inState,Vec2f inPos) : DoorActor(inState,inPos) {}
+    ~DoorActor()
     {
         if(state.cuts.getById(cutId))
             state.cuts.getById(cutId)->flags.pendingDestroy = true;

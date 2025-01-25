@@ -24,10 +24,10 @@ void Game::onInitialize()
     state.actors.values.push_back(std::make_unique<SpikeActor>(state,Vec2f{0,0}));
     state.actors.values.push_back(std::make_unique<SpikeActor>(state,Vec2f{100,-100}));
 
-    col_mask.load(LoadImage48("col_mask.png"));
-    col_mask3.load(LoadImage48("col_mask3.png"));
+    col_mask=LoadObstacleMask(LoadImage48("col_mask.png"));
+    col_mask3=LoadObstacleMask(LoadImage48("col_mask3.png"));
 
-    col_mask4.load(LoadImage48("col_long.png"));
+    col_mask4=LoadObstacleMask(LoadImage48("col_long.png"));
 
     /*obstacles.obstacles.push_back(Obstacle(&col_mask,{0.0,250.0},10.0f));
     obstacles.obstacles.push_back(Obstacle(&col_mask,{300.0,0.0},10.0f));

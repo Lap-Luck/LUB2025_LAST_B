@@ -51,46 +51,21 @@ public:
     }
 };
 
-
 #define X_ID 0
 #define Y_ID 1
 
-class ObstacleMask
-{
-public:
-    Vec2i size {};
-    std::vector<std::vector<int>> mask {};
-    std::vector<ObSegment> segments {};
+namespace{
+        std::vector<ObSegment> ObstacleMaskGenerateSegments(std::vector<std::vector<int>> mask, Vec2i size){
+            std::vector<ObSegment> segments;
 
 
-    void load(Image _img)
-    {
-        if constexpr (OBSTACLE_DEBUG) { TraceLog(LOG_INFO, "image"); };
 
-        // Fill mask vector
-        {
-            size = {_img.width, _img.height};
-            mask.clear(); mask.resize(size.x);
-            for (int x : range(size.x))
-            {
-                mask[x].resize(size.y);
-            }
-        }
 
-        for (int x : range(size.x))
-        {
-            for (int y : range(size.y))
-            {
-                if (((char*)_img.data)[(y * size.x + x) * 4 + 1] == 0)
-                {
-                    mask[x][y] = 1;
-                }
-                else
-                {
-                    mask[x][y] = 0;
-                }
-            }
-        };
+
+
+
+
+
 
         std::vector<int> hmap_min[2];
         hmap_min[0].resize(size.x+size.y);
@@ -214,9 +189,46 @@ public:
                 TraceLog(LOG_INFO, t.data());
             };
         };
-    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            return segments;
+        }
+
+}
+
+
+
+class ObstacleMask
+{
+public:
+    Vec2i size {};
+    std::vector<std::vector<int>> mask {};
+    std::vector<ObSegment> segments {};
+
+
 
 };
+
+
+
+std::vector<ObstacleMask> LoadObstacleMasks(Image _img,int num=1);
+ObstacleMask LoadObstacleMask(Image img);
+
 
 
 class Obstacle
