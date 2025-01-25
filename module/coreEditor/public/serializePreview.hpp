@@ -20,4 +20,20 @@ public:
         if(temp != inValue)
             inValue = temp;
     }
+
+    void propertyEnum(std::string inName, std::vector<std::string> options, std::string& selected) override
+    {
+        std::vector<const char*> items;
+        int i = 0;
+        int sel = 0;
+        for (auto& it : options)
+        {
+            if (selected == it) sel = i;
+            items.push_back(it.c_str());
+            i++;
+        }
+
+        ImGui::Combo(inName.c_str(), &sel, items.data(), items.size());
+        selected = options[sel];
+    }
 };

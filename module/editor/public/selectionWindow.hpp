@@ -31,9 +31,6 @@ public:
         if(ImGui::Button("Start"))
         {
             Game game {state};
-            state.bubbles.values.empty();
-            state.obstacles.values.empty();
-            state.cuts.values.empty();
             game.onInitialize();
             WindowManager::get()->queueAddWindowView(std::make_unique<GameWindow>(game));
         }

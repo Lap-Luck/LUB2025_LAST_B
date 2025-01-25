@@ -88,7 +88,7 @@ void Game::onInitialize()
     state.cuts.values.push_back(CutLine({280.0,0.0},-50.0));
     */
     state.bubbles.values.push_back(Bubble(
-        (Vector2){0,600.0},
+        (Vector2){0,0.0},
         (Vector2){0.0,-100.0},
         25.0));
     camera.rotation = 0.f;

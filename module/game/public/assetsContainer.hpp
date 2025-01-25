@@ -1,4 +1,7 @@
 #pragma once
+#include <map>
+#include <string>
+
 #include "obstacle.hpp"
 #include "raylib.h"
 
@@ -28,6 +31,8 @@ public:
     Texture2D szczupakf{};
 
     ObstacleMask spikeMask {};
+
+    std::map<std::string,Texture2D> backgroundSprite {};
 
     void load();
 

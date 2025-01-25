@@ -98,6 +98,8 @@ class EditorWindow : public Window
             {
                 BeginMode2D(camera);
 
+                DrawCircle(0,0,20,BLUE);
+
                 for (auto& it : state.actors.values)
                 {
                     it->onDraw();

@@ -30,7 +30,7 @@ public:
     {
         auto& texture = state.assets.spike;
         DrawTexturePro(state.assets.spike, { 0.0f, 0.0f, (float)texture.width, (float)texture.height },
-            {0.0f, 0.0f, (float)texture.width/8, (float)texture.height/8},
+            {pos.x, pos.y, (float)texture.width/8, (float)texture.height/8},
             {0,0}, 0.0f, WHITE);
     }
 };
