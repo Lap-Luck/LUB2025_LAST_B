@@ -51,12 +51,12 @@ struct Vec2
         return Vector2CrossProduct(*this, other);
     }
 
-    float length(Vec2<T> other)
+    float length()
     {
         return Vector2Length(*this);
     }
 
-    float lengthSqrt(Vec2<T> other)
+    float lengthSqrt()
     {
         return Vector2LengthSqr(*this);
     }
