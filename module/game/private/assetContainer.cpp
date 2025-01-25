@@ -1,3 +1,5 @@
+#include <cassert>
+
 #include "assetsContainer.hpp"
 
 void AssetsContainer::load()
