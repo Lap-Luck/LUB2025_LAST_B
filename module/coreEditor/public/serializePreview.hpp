@@ -21,6 +21,14 @@ public:
             inValue = temp;
     }
 
+    void propertyInt(std::string inName, int& inValue) override
+    {
+        float temp = inValue;
+        ImGui::InputFloat(inName.c_str(),&temp);
+        if(temp != inValue)
+            inValue = temp;
+    }
+
     void propertyEnum(std::string inName, std::vector<std::string> options, std::string& selected) override
     {
         std::vector<const char*> items;
