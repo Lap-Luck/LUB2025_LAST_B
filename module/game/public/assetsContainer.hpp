@@ -22,12 +22,18 @@ namespace {
         texture_2d_plus.masks.push_back(std::move(spikeMask));
     }
 
-    Texture2DPlus Load2DPlus(char* path,char* path2) {
+    Texture2DPlus Load2DPlus(char* path,char* path2,bool rev=false) {
         Texture2DPlus texture_2d_plus;
-        texture_2d_plus.img = LoadTexture(path);
+        auto im=LoadImage(path);
+        if (rev) {
+            ImageFlipHorizontal(&(im));
+        }
+
+        texture_2d_plus.img = LoadTextureFromImage(im);
+
 
         ObstacleMask spikeMask;
-        spikeMask= LoadObstacleMask(LoadImage48(path2));
+        spikeMask= LoadObstacleMask(LoadImage48(path2,rev));
         texture_2d_plus.masks.push_back(std::move(spikeMask));
 
         texture_2d_plus.obstaclePixelsSizeX=texture_2d_plus.img.width/((float)spikeMask.size.x);
@@ -52,6 +58,7 @@ public:
     std::map<std::string,Texture2D> backgroundSprite {};
 
     std::vector<Texture2DPlus> obstaclesTexturesPlus{};
+    std::vector<Texture2DPlus> obstaclesTexturesPlusR{};
 
 
     void load();

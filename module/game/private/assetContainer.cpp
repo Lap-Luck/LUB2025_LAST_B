@@ -28,6 +28,7 @@ void AssetsContainer::load()
             auto df=LoadDirectoryFiles(TextFormat("obstacles/%d",i));
             if (df.capacity==2) {
                 obstaclesTexturesPlus.push_back(Load2DPlus(df.paths[0],df.paths[1]));
+                obstaclesTexturesPlusR.push_back(Load2DPlus(df.paths[0],df.paths[1],true));
             }
             else {
                 assert(false);

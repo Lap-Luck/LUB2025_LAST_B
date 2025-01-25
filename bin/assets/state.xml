@@ -1,0 +1,22 @@
+<all>
+	<actor>
+		<TYPE>SpikeActor</TYPE>
+		<pos.x>234.236450</pos.x>
+		<pos.y>-169.934326</pos.y>
+		<scale>0.125000</scale>
+	</actor>
+	<actor>
+		<TYPE>SpikeActor</TYPE>
+		<pos.x>89.000000</pos.x>
+		<pos.y>-155.000000</pos.y>
+		<scale>0.125000</scale>
+	</actor>
+	<actor>
+		<TYPE>ObstacleActor</TYPE>
+		<pos.x>35.594315</pos.x>
+		<pos.y>-296.757416</pos.y>
+		<grafix_id>3</grafix_id>
+		<mirror>false</mirror>
+	</actor>
+</all>
+

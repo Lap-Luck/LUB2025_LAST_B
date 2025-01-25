@@ -6,20 +6,28 @@ public:
     ACTOR_BODY(ObstacleActor);
 
     int grafix_id=0;
+    bool flag_mirror=false;
 
-    ObstacleActor(GameState& inState,Vec2f inPos,int _grafix_id ) : Actor(inState,inPos),grafix_id(_grafix_id){}
+    ObstacleActor(GameState& inState,Vec2f inPos,int _grafix_id =0 ) : Actor(inState,inPos),grafix_id(_grafix_id){}
     ~ObstacleActor(){}
+
+    Texture2DPlus& getData() {
+        if (flag_mirror) {
+            return state.assets.obstaclesTexturesPlusR[grafix_id];
+        }
+        return state.assets.obstaclesTexturesPlus[grafix_id];
+    }
 
     void onPlaced() override
     {
-        ObstacleMask& om=state.assets.obstaclesTexturesPlus[grafix_id].masks[0];
-        float sx=state.assets.obstaclesTexturesPlus[grafix_id].obstaclePixelsSizeX*1.0f/8.0f;
+        ObstacleMask& om=getData().masks[0];
+        float sx=getData().obstaclePixelsSizeX*1.0f/8.0f;
         SpawnnObstacle(Obstacle(&om,pos,sx));
 
     }
 
     void onDraw() override {
-        auto& texture = state.assets.obstaclesTexturesPlus[grafix_id].img;
+        auto& texture = getData().img;
 
         DrawTextureEx(texture, {pos.x,pos.y}, 0.0f,1.0f/8.0f,WHITE);
     }
@@ -27,9 +35,23 @@ public:
      void onSerialize(ISerialize* inSerialize) override
     {
         Actor::onSerialize(inSerialize);
-        float temp = grafix_id;
-        inSerialize->propertyFloat("grafix_id",temp);
-        grafix_id = temp;
+        inSerialize->propertyInt("grafix_id",grafix_id);
+        if (grafix_id>=state.assets.obstaclesTexturesPlus.size()) {
+            grafix_id=state.assets.obstaclesTexturesPlus.size()-1;
+        }
+
+
+        std::string s="false";
+        if (flag_mirror) s="true";
+        inSerialize->propertyEnum("mirror",{"false","true"},s);
+        flag_mirror = s=="true";
+
+
+
+
+
+
+
     }
 
 };

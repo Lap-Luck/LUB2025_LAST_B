@@ -9,10 +9,13 @@
 
 constexpr int OBSTACLE_DEBUG = true;
 
-inline Image LoadImage48(char* path)
+inline Image LoadImage48(char* path,bool rev=false)
 {
     Image img=LoadImage(path);
     ImageFormat(&img,PIXELFORMAT_UNCOMPRESSED_R8G8B8A8);
+    if (rev) {
+        ImageFlipHorizontal(&img);
+    }
     return img;
 }
 
