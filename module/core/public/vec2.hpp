@@ -56,7 +56,7 @@ struct Vec2
         return Vector2Length(*this);
     }
 
-    float lengthSqrt()
+    float lengthSqr()
     {
         return Vector2LengthSqr(*this);
     }
