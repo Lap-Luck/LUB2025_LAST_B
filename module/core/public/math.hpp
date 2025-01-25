@@ -3,6 +3,7 @@
 
 #include "raylib.h"
 #include "raymath.h"
+#include "vec2.hpp"
 
 struct IntRangeIT{
     int value;
@@ -22,19 +23,15 @@ struct IntRange{
 
 inline IntRange range(int to){return (IntRange){to};}
 
-struct SegmentClosest {
-    float d;
-    Vector2 point;
-};
 
-inline float DistanceSegment2(Vector2 A,Vector2 B,Vector2 pos) {
-    float d1=Vector2Distance(A,pos);
-    float d2=Vector2Distance(B,pos);
-    Vector2 ab=Vector2Subtract(A,B);
-    Vector2 abn=Vector2(ab.y,-ab.x);
-    float d3=1000.0+Vector2DotProduct(abn,Vector2Subtract(pos,A))/Vector2Length(abn);
-    return fmin(d1,fmin(d2,d3));
 
+inline Vec2f ClosesPointInSegment(Vec2f A,Vec2f B,Vec2f pos) {
+    Vec2f ab=(B-A);
+    Vec2f p=(pos-A);
+    float k=p.dotProduct(ab)*(1.0f/ab.lengthSqr());
+    k=Clamp(k,0.0f,1.0f);
+    Vec2f C=A+Vec2f(ab*k);
+    return C;
 }
 
 inline float DistanceSegment(Vector2 A,Vector2 B,Vector2 pos) {
