@@ -7,13 +7,13 @@ class SpikeActor : public Actor
 {
 public:
     Vec2f pos {};
-    CutLine::CutLineId cutId;
+    CutLine::CutLineId cutId {};
 
     SpikeActor(GameState& inState,Vec2f inPos) : Actor(inState), pos(inPos) {}
 
     void onPlaced() override
     {
-        CutLine cut = CutLine{pos,200};
+        CutLine cut = CutLine{pos+Vec2f{50,0},100};
         cutId = cut.unique_id;
         state.cuts.values.push_back(std::move(cut));
     }
