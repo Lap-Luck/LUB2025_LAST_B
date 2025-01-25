@@ -70,11 +70,11 @@ public:
             }
         }
 
-        for (int x : range(16))
+        for (int x : range(size.x))
         {
-            for (int y : range(16))
+            for (int y : range(size.y))
             {
-                if (((char*)_img.data)[(y * 16 + x) * 4 + 1] == 0)
+                if (((char*)_img.data)[(y * size.x + x) * 4 + 1] == 0)
                 {
                     mask[x][y] = 1;
                 }
@@ -85,11 +85,18 @@ public:
             }
         };
 
-        int hmap_min[2][16];
-        int hmap_max[2][16];
+        std::vector<int> hmap_min[2];
+        hmap_min[0].resize(size.x+size.y);
+        hmap_min[1].resize(size.x+size.y);
+
+        std::vector<int> hmap_max[2];
+        hmap_max[0].resize(size.x+size.y);
+        hmap_max[1].resize(size.x+size.y);
+
+        int axis_size[2]={size.x,size.y};
         {
             //generate hmap
-            for (int a : range(16))
+            for (int a : range(size.x+size.y))
             {
                 hmap_min[0][a] = 1000;
                 hmap_min[1][a] = 1000;
@@ -97,32 +104,38 @@ public:
                 hmap_max[1][a] = 1000;
                 for (int per : range(2))
                 {
-                    for (int b : range(16))
+                    for (int b : range(size.x+size.y))
                     {
                         {
                             int coord[2] = {a, b};
 
                             int x = coord[(X_ID + per) % 2];
                             int y = coord[(Y_ID + per) % 2];
-                            if (mask[x][y] == 1)
-                            {
-                                hmap_min[per][a] = b;
-                                break;
+                            if (x<size.x){
+                                if (y<size.y) {
+                                    if (mask[x][y] == 1)
+                                    {
+                                        hmap_min[per][a] = b;
+                                        break;
+                                    }
+                                }
                             }
+
                         }
                     }
-                    for (int b : range(16))
+                    for (int b : range(size.x+size.y))
                     {
-                        b = 16 - 1 - b;
-                        {
-                            int coord[2] = {a, b};
+                        b = size.x+size.y - 1 - b;
+                        int coord[2] = {a, b};
+                        int x = coord[(X_ID + per) % 2];
+                        int y = coord[(Y_ID + per) % 2];
+                        if (x<size.x){
+                            if (y<size.y) {
 
-                            int x = coord[(X_ID + per) % 2];
-                            int y = coord[(Y_ID + per) % 2];
-                            if (mask[x][y] == 1)
-                            {
-                                hmap_max[per][a] = b;
-                                break;
+                                        if (mask[x][y] == 1) {
+                                            hmap_max[per][a] = b;
+                                            break;
+                                        }
                             }
                         }
                     }
@@ -131,7 +144,7 @@ public:
         }
 
 
-        for (int xm : range(16 - 1))
+        for (int xm : range(size.x - 1))
         {
             int xp = xm + 1;
             if (abs(hmap_min[X_ID][xm] - hmap_min[X_ID][xp]) <= 1)
@@ -154,7 +167,7 @@ public:
             }
         }
         //remove doubles
-        for (int ym : range(16 - 1))
+        for (int ym : range(size.y - 1))
         {
             int yp = ym + 1;
             if (abs(hmap_min[Y_ID][ym] - hmap_min[Y_ID][yp]) <= 1)
@@ -180,15 +193,18 @@ public:
 
         if constexpr (OBSTACLE_DEBUG)
         {
-            for (int y : range(16))
+            for (int y : range(size.y))
             {
-                char t[17];
-                for (int x : range(16))
+                std::vector<char> t;
+                t.resize(size.x+1);
+
+
+                for (int x : range(size.x))
                 {
                     t[x] = 'A' + mask[x][y];
                 }
-                t[16] = 0;
-                TraceLog(LOG_INFO, t);
+                t[size.x] = 0;
+                TraceLog(LOG_INFO, t.data());
             };
         };
     }
@@ -226,16 +242,16 @@ public:
 
     Rectangle box()
     {
-        return Rectangle(pos.x, pos.y, scale * 16, scale * 16);
+        return Rectangle(pos.x, pos.y, scale * mask->size.x, scale * mask->size.y);
     }
 
     void draw()
     {
         if (debug_draw)
         {
-            for (int y : range(16))
+            for (int y : range(mask->size.y))
             {
-                for (int x : range(16))
+                for (int x : range(mask->size.x))
                 {
                     if (mask->mask[x][y] == 1)
                     {

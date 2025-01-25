@@ -31,10 +31,16 @@ public:
 
     Vec2i screenSize {};
 
+    BubblesContainer bubbles {};
+    ObstacleContainer obstacles {};
+    ActorContainer actors {};
+    std::vector<CutLine> cuts;
+
 protected:
     GameState& state;
     Vector2 ballPosition = { 100,100 };
 
     ObstacleMask col_mask;
     ObstacleMask col_mask3;
+    ObstacleMask col_mask4;
 };
