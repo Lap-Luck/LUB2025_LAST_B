@@ -25,6 +25,7 @@ int main(void)
         Vec2i{1280,720},
         [&state]
         {
+            SetTargetFPS(60);
             ChangeDirectory("assets");
             state.assets.unknownTexture = LoadTexture("unknown.png");
         }
