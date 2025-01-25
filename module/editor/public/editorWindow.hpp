@@ -108,6 +108,8 @@ class EditorWindow : public Window
                 {
                     DrawRectangle(it->pos.x,it->pos.y,20,20,RED);
                 }
+
+                DrawRectangleLines(-1440/2,-2000,1440,2000,BLACK);
                 EndMode2D();
             });
         }

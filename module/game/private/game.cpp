@@ -101,7 +101,7 @@ void Game::onInitialize()
 
 void Game::onUpdate(float deltaTime)
 {
-    camera.zoom = screenSize.x/1000.f;
+    camera.zoom = screenSize.x/1440.f;
     float my=max_bubble_y(state.bubbles.values);
     camera.target= Vec2f(0,my);
     camera.offset= Vec2f(screenSize.x/2,screenSize.y*0.5);
@@ -156,7 +156,6 @@ void Game::onUpdate(float deltaTime)
 
 
                 }
-
             }
         }
     }
