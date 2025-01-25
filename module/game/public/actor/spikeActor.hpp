@@ -8,12 +8,15 @@ class SpikeActor : public Actor
 public:
     Vec2f pos {};
     CutLine::CutLineId cutId {};
+    Obstacle::ObstacleId  obstalceId {};
 
     SpikeActor(GameState& inState,Vec2f inPos) : Actor(inState), pos(inPos) {}
     ~SpikeActor()
     {
         if(state.cuts.getById(cutId))
             state.cuts.getById(cutId)->flags.pendingDestroy = true;
+        if(state.obstacles.getById(obstalceId))
+            state.obstacles.getById(obstalceId)->flags.pendingDestroy = true;
     }
 
     void onPlaced() override
@@ -21,6 +24,10 @@ public:
         CutLine cut = CutLine{pos+Vec2f{50,0},100};
         cutId = cut.unique_id;
         state.cuts.values.push_back(std::move(cut));
+
+        Obstacle obstacle = Obstacle(&state.assets.spikeMask,pos,3.0f);
+        obstalceId = obstacle.unique_id;
+        state.obstacles.values.push_back(std::move(obstacle));
     }
 
     void onDraw() override

@@ -11,14 +11,6 @@
 #include "bubble.hpp"
 
 
-namespace{
-    Image LoadImage48(char* path){
-        Image img=LoadImage(path);
-        ImageFormat(&img,PIXELFORMAT_UNCOMPRESSED_R8G8B8A8);
-        return img;
-    }
-};
-
 class Game
 {
 public:
@@ -31,8 +23,8 @@ public:
 
     Vec2i screenSize {};
 
-protected:
     GameState& state;
+protected:
     Vector2 ballPosition = { 100,100 };
 
     ObstacleMask col_mask;

@@ -9,6 +9,13 @@
 
 constexpr int OBSTACLE_DEBUG = true;
 
+inline Image LoadImage48(char* path)
+{
+    Image img=LoadImage(path);
+    ImageFormat(&img,PIXELFORMAT_UNCOMPRESSED_R8G8B8A8);
+    return img;
+}
+
 class ObSegment
 {
 public:
