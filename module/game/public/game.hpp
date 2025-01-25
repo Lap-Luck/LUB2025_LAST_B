@@ -40,6 +40,7 @@ public:
     std::vector<Bubble> bubbles;
     std::vector<Obstacle> obstacles;
     std::vector<CutLine> cuts;
+    std::vector<CollsionTriger> collsionTrigers;
 
 protected:
     GameState& state;

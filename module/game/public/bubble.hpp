@@ -55,7 +55,7 @@ namespace {
     std::vector<cInfo> get_collding(std::vector<Obstacle> &obs,Vec2f pos,float r) {
         std::vector<cInfo> res;
         for (int o_id:range(obs.size())) {
-            Obstacle o=obs[o_id];
+            Obstacle& o=obs[o_id];
            //if (box_box_colide(o.box(),pos,r)) {
                // o.s=false;
             //}
@@ -68,6 +68,7 @@ namespace {
                     Vec2f C=ClosesPointInSegment(A,B,pos);
                     float d=Vector2Distance(C,pos);
                     if (d<r) {
+                        o.just_colliding=true;
                         res.push_back({C,A,B,d});
                     }
                 }

@@ -37,6 +37,9 @@ public:
 #define X_ID 0
 #define Y_ID 1
 
+
+
+
 class Obstacle {
 public:
     Vector2 pos;
@@ -44,12 +47,13 @@ public:
     std::vector<ObSegment> segments;
     float scale;
     bool s=true;
+    bool just_colliding=false;
 
     Obstacle(Image img,Vector2 _pos,float _scale) {
         //cassert;
         pos=_pos;
         scale=_scale;
-
+        just_colliding=false;
         if constexpr (OBSTACLE_DEBUG) { TraceLog(LOG_INFO, "image"); };
 
         for (int x: range(16)) {
@@ -174,6 +178,26 @@ public:
                 DrawLine(pos.x+((float)s.ax+0.5)*scale,pos.y+((float)s.ay+0.5)*scale,pos.x+((float)s.bx+0.5)*scale,pos.y+((float)s.by+0.5)*scale,RED);
 
             }
+        }
+    }
+
+};
+
+
+struct CollsionTriger {
+    Obstacle* ob;
+
+    void (*on_colision)(int i);
+    int id;
+    bool on=true;
+
+    void check() {
+        if (ob->just_colliding) {
+            if (on) {
+                on=false;
+                on_colision(id);
+            }
+
         }
     }
 
