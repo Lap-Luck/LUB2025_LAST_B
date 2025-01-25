@@ -1,16 +1,2 @@
-<all>
-	<actor>
-		<TYPE>SpikeActor</TYPE>
-		<pos.x>-24.998047</pos.x>
-		<pos.y>-623.899780</pos.y>
-		<scale>0.125000</scale>
-	</actor>
-	<actor>
-		<TYPE>ObstacleActor</TYPE>
-		<pos.x>-36.108074</pos.x>
-		<pos.y>-416.858948</pos.y>
-		<grafix_id>0</grafix_id>
-		<Orientation>FlipHorizontal</Orientation>
-	</actor>
-</all>
+<all/>
 

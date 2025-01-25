@@ -4,7 +4,7 @@ class ObstacleActor : public Actor
 {
 public:
     ACTOR_BODY(ObstacleActor);
-
+    float scale=1.0f;
     int grafix_id=0;
     bool flag_mirror=false;
 
@@ -21,7 +21,7 @@ public:
     void onPlaced() override
     {
         ObstacleMask& om=getData().masks[0];
-        float sx=getData().obstaclePixelsSizeX*1.0f/8.0f;
+        float sx=((float)getData().obstaclePixelsSizeX)*1.0f/8.0f*scale;
         SpawnnObstacle(Obstacle(&om,pos,sx));
 
     }
@@ -29,7 +29,7 @@ public:
     void onDraw() override {
         auto& texture = getData().img;
 
-        DrawTextureEx(texture, {pos.x,pos.y}, 0.0f,1.0f/8.0f,WHITE);
+        DrawTextureEx(texture, {pos.x,pos.y}, 0.0f,1.0f/8.0f*scale,WHITE);
     }
 
      void onSerialize(ISerialize* inSerialize) override
@@ -45,6 +45,9 @@ public:
         if (flag_mirror) s="FlipHorizontal";
         inSerialize->propertyEnum("orientation",{"NormalOrientation","FlipHorizontal"},s);
         flag_mirror = s=="FlipHorizontal";
+
+
+        inSerialize->propertyFloat("scale",scale);
     }
 
 };
