@@ -53,5 +53,15 @@ struct ActorFactoryEntry
 
 struct ActorFactory
 {
+    ActorFactoryEntry* getByClassName(std::string inName)
+    {
+        for (auto& it : entries)
+        {
+            if (it.className == inName)
+                return &it;
+        }
+        return nullptr;
+    }
+
     std::vector<ActorFactoryEntry> entries;
 };

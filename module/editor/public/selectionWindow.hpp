@@ -1,5 +1,6 @@
 #pragma once
 
+#include <actorSerializeHelpers.hpp>
 #include <cmath>
 #include <iostream>
 
@@ -35,6 +36,24 @@ public:
             WindowManager::get()->queueAddWindowView(std::make_unique<GameWindow>(game));
         }
         ImGui::Separator();
+
+        SerializePreview preview;
+        preview.propertyString("file",fileName);
+
+        if(ImGui::Button("Save"))
+        {
+            saveToFile(fileName,state);
+        }
+
+        ImGui::SameLine();
+        if(ImGui::Button("Load"))
+        {
+            loadFromFile(fileName,state);
+        }
+
+
+        ImGui::Separator();
+
         std::vector<const char*> items;
         for (auto& it : state.actorFactory.entries)
         {
@@ -69,6 +88,7 @@ public:
     }
 
 protected:
+    std::string fileName {"default"};
     GameState& state;
     EditorState& edState;
 

@@ -12,4 +12,5 @@ public:
     virtual void propertyInt(std::string inName, int& inValue) = 0;
     virtual void propertyEnum(std::string inName, std::vector<std::string> options, std::string& selected) = 0;
 
+    virtual void propertyListStruct(std::string inName, std::function<void(ISerialize* inSerialize)> inInner) {};
 };
