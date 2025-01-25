@@ -24,6 +24,7 @@ public:
     Vec2i screenSize {};
 
     GameState& state;
+
 protected:
     Vector2 ballPosition = { 100,100 };
 

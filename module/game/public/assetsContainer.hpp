@@ -20,6 +20,16 @@ namespace {
         texture_2d_plus.masks.push_back(std::move(spikeMask));
     }
 
+    Texture2DPlus Load2DPlus(char* path,char* path2) {
+        Texture2DPlus texture_2d_plus;
+        texture_2d_plus.img = LoadTexture(path);
+
+        ObstacleMask spikeMask;
+        spikeMask= LoadObstacleMask(LoadImage48(path2));
+        texture_2d_plus.masks.push_back(std::move(spikeMask));
+        return  texture_2d_plus;
+    }
+
 
 }
 
@@ -33,6 +43,9 @@ public:
     ObstacleMask spikeMask {};
 
     std::map<std::string,Texture2D> backgroundSprite {};
+
+    std::vector<Texture2DPlus> obstaclesTexturesPlus{};
+
 
     void load();
 

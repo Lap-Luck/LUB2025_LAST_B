@@ -3,26 +3,24 @@
 class DoorActor : public Actor
 {
 public:
-    CutLine::CutLineId cutId {};
-    Obstacle::ObstacleId  obstalceId {};
+
 
     DoorActor(GameState& inState,Vec2f inPos) : Actor(inState,inPos) {}
-    ~DoorActor()
-    {
-        if(state.cuts.getById(cutId))
-            state.cuts.getById(cutId)->flags.pendingDestroy = true;
-        if(state.obstacles.getById(obstalceId))
-            state.obstacles.getById(obstalceId)->flags.pendingDestroy = true;
-    }
+    ~DoorActor(){}
 
     void onPlaced() override
     {
+
         CutLine cut = CutLine{pos+Vec2f{50,0},100};
-        cutId = cut.unique_id;
+        SpawnnCutLine(cut);
+
+
+
+        auto cutId = cut.unique_id;
         state.cuts.values.push_back(std::move(cut));
 
         Obstacle obstacle = Obstacle(&state.assets.spikeMask,pos,3.0f);
-        obstalceId = obstacle.unique_id;
+        auto obstalceId = obstacle.unique_id;
         state.obstacles.values.push_back(std::move(obstacle));
     }
 
