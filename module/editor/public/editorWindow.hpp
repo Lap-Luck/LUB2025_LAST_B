@@ -41,7 +41,7 @@ class EditorWindow : public Window
             mousePos.y = (GetMousePosition().y - renderer.lastRenderedScreenRect.y);
             Vector2 mouseWorldPos = GetScreenToWorld2D(Vector2(mousePos), camera);
 
-            if(focused && mousePos.x > 0 && mousePos.y > 0 && mousePos.x < renderer.lastRenderedScreenRect.width && mousePos.y < renderer.lastRenderedScreenRect.height)
+            if(mousePos.x > 0 && mousePos.y > 0 && mousePos.x < renderer.lastRenderedScreenRect.width && mousePos.y < renderer.lastRenderedScreenRect.height)
             {
                 if (IsMouseButtonDown(MOUSE_BUTTON_RIGHT))
                 {
