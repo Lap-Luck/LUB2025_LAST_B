@@ -6,11 +6,10 @@
 class SpikeActor : public Actor
 {
 public:
-    Vec2f pos {};
     CutLine::CutLineId cutId {};
     Obstacle::ObstacleId  obstalceId {};
 
-    SpikeActor(GameState& inState,Vec2f inPos) : Actor(inState), pos(inPos) {}
+    SpikeActor(GameState& inState,Vec2f inPos) : Actor(inState,inPos) {}
     ~SpikeActor()
     {
         if(state.cuts.getById(cutId))

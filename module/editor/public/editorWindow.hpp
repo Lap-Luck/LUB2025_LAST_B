@@ -63,7 +63,12 @@ class EditorWindow : public Window
             renderer.drawContent([&]()
             {
                 BeginMode2D(camera);
-                DrawTexture(state.assets.unknownTexture,0,0,WHITE);
+
+                for (auto& it : state.actors.values)
+                {
+                    it->onDraw();
+                    //DrawRectangle(it->pos)
+                }
                 EndMode2D();
             });
         }

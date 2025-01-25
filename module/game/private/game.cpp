@@ -1,5 +1,7 @@
 #include "game.hpp"
 
+#include <iostream>
+
 #include "obstacle.hpp"
 #include "actor/spikeActor.hpp"
 
@@ -20,6 +22,7 @@ namespace{
 void Game::onInitialize()
 {
     state.actors.values.push_back(std::make_unique<SpikeActor>(state,Vec2f{0,0}));
+    state.actors.values.push_back(std::make_unique<SpikeActor>(state,Vec2f{100,-100}));
 
     col_mask.load(LoadImage48("col_mask.png"));
     col_mask3.load(LoadImage48("col_mask3.png"));
@@ -68,14 +71,10 @@ void Game::onInitialize()
     state.cuts.values.push_back(CutLine({280.0,0.0},-50.0));
 
     state.bubbles.values.push_back(Bubble(
-        (Vector2){100.0,600.0},
+        (Vector2){0,600.0},
         (Vector2){0.0,-100.0},
         25.0));
     camera.rotation = 0.f;
-    camera.zoom = 1.0f;
-    float my=max_bubble_y(state.bubbles.values);
-    camera.target= Vec2f(0.0,my);
-    camera.offset= Vec2f(0.0,screenSize.y*0.5);
 
     for (auto& it : state.actors.values)
     {
@@ -85,6 +84,12 @@ void Game::onInitialize()
 
 void Game::onUpdate(float deltaTime)
 {
+    std::cout << screenSize.x << std::endl;
+    camera.zoom = screenSize.x/1000.f;
+    float my=max_bubble_y(state.bubbles.values);
+    camera.target= Vec2f(0,my);
+    camera.offset= Vec2f(screenSize.x/2,screenSize.y*0.5);
+
     for (int b_id:range(state.bubbles.values.size())){
         Bubble& b=state.bubbles.values[b_id];
         b.frame(state.obstacles.values,state.cuts.values);
