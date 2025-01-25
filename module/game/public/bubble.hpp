@@ -52,33 +52,6 @@ namespace {
         return false;
     }
 
-    std::vector<cInfo> get_collding(std::vector<Obstacle> &obs,Vec2f pos,float r) {
-        std::vector<cInfo> res;
-        for (int o_id:range(obs.size())) {
-            Obstacle& o=obs[o_id];
-           //if (box_box_colide(o.box(),pos,r)) {
-               // o.s=false;
-            //}
-            {
-                for (int s_id:range(o.segments.size())) {
-                    ObSegment s=o.segments[s_id];
-                    Vector2 A=o.pos+Vec2f{((float)s.ax+0.5f)*o.scale,((float)s.ay+0.5f)*o.scale};
-                    Vector2 B=o.pos+Vec2f{((float)s.bx+0.5f)*o.scale,((float)s.by+0.5f)*o.scale};
-
-                    Vec2f C=ClosesPointInSegment(A,B,pos);
-                    float d=Vector2Distance(C,pos);
-                    if (d<r) {
-                        o.just_colliding=true;
-                        res.push_back({C,A,B,d});
-                    }
-                }
-            }
-
-        }
-        return res;
-    }
-
-
 }
 
 class Bubble
@@ -137,7 +110,7 @@ public:
         vel.y=Lerp(vel.y,-100.0,0.02f);
         pos=Vector2Add(pos,Vector2Scale(vel,0.016));
 
-        std::vector<cInfo> cis = get_collding(obs,pos,r);
+        std::vector<cInfo> cis = get_collding(obs);
         for (int ci_id:range(cis.size())) {
             cInfo ci= cis[ci_id];
             Vector2 A=ci.A;
@@ -169,6 +142,34 @@ public:
         check_cls(cls);
 
     }
+
+    std::vector<cInfo> get_collding(std::vector<Obstacle> &obs) {
+        std::vector<cInfo> res;
+        for (int o_id:range(obs.size())) {
+            Obstacle& o=obs[o_id];
+            //if (box_box_colide(o.box(),pos,r)) {
+            // o.s=false;
+            //}
+            {
+                for (int s_id:range(o.mask->segments.size())) {
+                    ObSegment s=o.mask->segments[s_id];
+                    Vector2 A=o.pos+Vec2f{((float)s.ax+0.5f)*o.scale,((float)s.ay+0.5f)*o.scale};
+                    Vector2 B=o.pos+Vec2f{((float)s.bx+0.5f)*o.scale,((float)s.by+0.5f)*o.scale};
+
+                    Vec2f C=ClosesPointInSegment(A,B,pos);
+                    float d=Vector2Distance(C,pos);
+                    if (d<r) {
+                        if(o.onHit) o.onHit(this);
+                        res.push_back({C,A,B,d});
+                    }
+                }
+            }
+
+        }
+        return res;
+    }
+
+
     void draw() {
         DrawCircleV(pos,r, Color(255,255,0,100));
         for (int id:range(particles.size())) {
@@ -177,4 +178,5 @@ public:
 
         }
     }
+
 };

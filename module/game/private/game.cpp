@@ -15,41 +15,37 @@ namespace{
     }
 }
 
-std::vector<Obstacle>* GLOBobstacles;
-//std::vector<Obstacle>::iterator GLOBref;
 
 void Game::onInitialize()
 {
-    obstacles.push_back(Obstacle(LoadImage48("col_mask.png"),{0.0,250.0},10.0f));
-    obstacles.push_back(Obstacle(LoadImage48("col_mask.png"),{300.0,0.0},10.0f));
-    obstacles.push_back(Obstacle(LoadImage48("col_mask.png"),{300.0,-300.0},10.0f));
-    obstacles.push_back(Obstacle(LoadImage48("col_mask.png"),{300.0,-600.0},10.0f));
+    col_mask.load(LoadImage48("col_mask.png"));
+    col_mask3.load(LoadImage48("col_mask3.png"));
+
+    /*obstacles.obstacles.push_back(Obstacle(&col_mask,{0.0,250.0},10.0f));
+    obstacles.obstacles.push_back(Obstacle(&col_mask,{300.0,0.0},10.0f));
+    obstacles.obstacles.push_back(Obstacle(&col_mask,{300.0,-300.0},10.0f));
+    obstacles.obstacles.push_back(Obstacle(&col_mask,{300.0,-600.0},10.0f));
 
 
-    obstacles.push_back(Obstacle(LoadImage48("col_mask2.png"),{0.0,120.0},10.0f));
-    obstacles.push_back(Obstacle(LoadImage48("col_mask2.png"),{0.0,-20.0},10.0f));
-    obstacles.push_back(Obstacle(LoadImage48("col_mask2.png"),{0.0,-160.0},10.0f));
+    obstacles.obstacles.push_back(Obstacle(&col_mask,{0.0,120.0},10.0f));
+    obstacles.obstacles.push_back(Obstacle(&col_mask,{0.0,-20.0},10.0f));
+    obstacles.obstacles.push_back(Obstacle(&col_mask,{0.0,-160.0},10.0f));*/
     //HELP IT IS BAD CODE
     {
-        Obstacle door = Obstacle(LoadImage48("col_mask.png"),{200.0,-400.0},10.0f);
-        obstacles.push_back(door);
-        int door_id=obstacles.size()-1;
-        //GLOBref=obstacles.begin()+(obstacles.size()-1);
-        GLOBobstacles=&obstacles;
+        Obstacle door = Obstacle(&col_mask,{200.0,-400.0},10.0f);
+        Obstacle::ObstacleId door_id= door.unique_id;
+        obstacles.obstacles.push_back(std::move(door));
 
 
-        Obstacle button = Obstacle(LoadImage48("col_mask3.png"),{300.0,-300.0},10.0f);
-        obstacles.push_back(button);
-        collsionTrigers.push_back((CollsionTriger){&obstacles[obstacles.size()-1],[](int door_id) {
-            TraceLog(LOG_INFO,"DOOR OPEN");//only one door
-            GLOBobstacles[0].erase(GLOBobstacles[0].begin()+door_id);
-        },door_id});
-
-
-
+        Obstacle button = Obstacle(&col_mask3,{300.0,-300.0},10.0f);
+        button.onHit = [&,door_id](Bubble* bubble)
+        {
+            TraceLog(LOG_INFO,"DOOR OPEN");
+            if(obstacles.getById(door_id))
+                obstacles.getById(door_id)->pendingDestroy = true;
+        };
+        obstacles.obstacles.push_back(std::move(button));
     }
-
-
 
     cuts.push_back(CutLine({280.0,0.0},-50.0));
 
@@ -57,6 +53,7 @@ void Game::onInitialize()
         (Vector2){100.0,600.0},
         (Vector2){0.0,-100.0},
         25.0));
+    camera.rotation = 0.f;
     camera.zoom = 1.0f;
     float my=max_bubble_y(bubbles);
     camera.target= Vec2f(0.0,my);//bubbles[0].pos;
@@ -67,7 +64,7 @@ void Game::onUpdate(float deltaTime)
 {
     for (int b_id:range(bubbles.size())){
         Bubble& b=bubbles[b_id];
-        b.frame(obstacles,cuts);
+        b.frame(obstacles.obstacles,cuts);
     }
 
     bool cuts=true;
@@ -122,11 +119,9 @@ void Game::onUpdate(float deltaTime)
         }
     }
 
-    for (int ct_id:range(collsionTrigers.size())){
-        CollsionTriger& triger=collsionTrigers[ct_id];
-        triger.check();
-    }
+
     camera.target= Vec2f(0.0,fmin(max_bubble_y(bubbles),camera.target.y-0.3));
+    obstacles.deletePending();
 }
 
 void Game::onDraw()
@@ -140,8 +135,8 @@ void Game::onDraw()
         b.draw();
     }
 
-    for (int o_id:range(obstacles.size())){
-        Obstacle& o=obstacles[o_id];
+    for (int o_id:range(obstacles.obstacles.size())){
+        Obstacle& o=obstacles.obstacles[o_id];
         o.draw();
     }
 
