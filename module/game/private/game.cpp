@@ -21,7 +21,12 @@ namespace{
 
 void Game::onInitialize()
 {
-    state.actors.values.push_back(std::make_unique<SpikeActor>(state,Vec2f{0,0}));
+    state.bubbles.values.clear();
+    state.cuts.values.clear();
+    state.obstacles.values.clear();
+
+
+    /*state.actors.values.push_back(std::make_unique<SpikeActor>(state,Vec2f{0,0}));
     state.actors.values.push_back(std::make_unique<SpikeActor>(state,Vec2f{100,-100}));
 
     col_mask=LoadObstacleMask(LoadImage48("col_mask.png"));
@@ -34,7 +39,7 @@ void Game::onInitialize()
     col_m1=cmasks[0];
     col_m2=cmasks[1];
 
-    /*obstacles.obstacles.push_back(Obstacle(&col_mask,{0.0,250.0},10.0f));
+    obstacles.obstacles.push_back(Obstacle(&col_mask,{0.0,250.0},10.0f));
     obstacles.obstacles.push_back(Obstacle(&col_mask,{300.0,0.0},10.0f));
     obstacles.obstacles.push_back(Obstacle(&col_mask,{300.0,-300.0},10.0f));
     obstacles.obstacles.push_back(Obstacle(&col_mask,{300.0,-600.0},10.0f));
@@ -42,7 +47,7 @@ void Game::onInitialize()
 
     obstacles.obstacles.push_back(Obstacle(&col_mask,{0.0,120.0},10.0f));
     obstacles.obstacles.push_back(Obstacle(&col_mask,{0.0,-20.0},10.0f));
-    obstacles.obstacles.push_back(Obstacle(&col_mask,{0.0,-160.0},10.0f));*/
+    obstacles.obstacles.push_back(Obstacle(&col_mask,{0.0,-160.0},10.0f));
     //HELP IT IS BAD CODE
     {
         Obstacle door = Obstacle(&col_mask,{200.0,-400.0},10.0f);
@@ -81,7 +86,7 @@ void Game::onInitialize()
     }
 
     state.cuts.values.push_back(CutLine({280.0,0.0},-50.0));
-
+    */
     state.bubbles.values.push_back(Bubble(
         (Vector2){0,600.0},
         (Vector2){0.0,-100.0},
@@ -96,7 +101,6 @@ void Game::onInitialize()
 
 void Game::onUpdate(float deltaTime)
 {
-    std::cout << screenSize.x << std::endl;
     camera.zoom = screenSize.x/1000.f;
     float my=max_bubble_y(state.bubbles.values);
     camera.target= Vec2f(0,my);

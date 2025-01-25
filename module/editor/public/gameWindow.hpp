@@ -12,7 +12,7 @@
 class GameWindow : public Window
 {
     public:
-        explicit GameWindow(Game& inGame) : Window("GameWindow"), game(inGame) {}
+        explicit GameWindow(Game inGame) : Window("GameWindow"), game(std::move(inGame)) {}
 
         void onInstanced() override
         {
@@ -30,6 +30,8 @@ class GameWindow : public Window
             renderer.changeSize(newSize);
             game.screenSize = newSize;
         }
+
+        void closeRequested() override {pendingDestroy = true;};
 
         void onUpdate(float deltaTime) override
         {
@@ -49,6 +51,6 @@ class GameWindow : public Window
         }
 
     protected:
-        Game& game;
+        Game game;
         TextureRenderer renderer;
 };

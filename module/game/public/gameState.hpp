@@ -73,7 +73,7 @@ public:
 class ActorContainer
 {
 public:
-    std::vector<std::unique_ptr<Actor>> values;
+    std::vector<std::shared_ptr<Actor>> values;
 
     void deletePending()
     {
@@ -88,6 +88,7 @@ class GameState
 {
 public:
     AssetsContainer assets;
+    ActorFactory actorFactory {};
 
     BubblesContainer bubbles {};
     ObstacleContainer obstacles {};

@@ -6,7 +6,7 @@ public:
     CutLine::CutLineId cutId {};
     Obstacle::ObstacleId  obstalceId {};
 
-    DoorActor(GameState& inState,Vec2f inPos) : DoorActor(inState,inPos) {}
+    DoorActor(GameState& inState,Vec2f inPos) : Actor(inState,inPos) {}
     ~DoorActor()
     {
         if(state.cuts.getById(cutId))

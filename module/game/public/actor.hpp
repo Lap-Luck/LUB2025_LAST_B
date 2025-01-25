@@ -1,6 +1,5 @@
 #pragma once
-//#include "gameState.hpp"
-
+#include "serialize.hpp"
 #include "obstacle.hpp"
 #include "vec2.hpp"
 
@@ -15,10 +14,17 @@ public:
     virtual void onPlaced() = 0;
     virtual void onDraw() = 0;
 
+    virtual void onSerialize(ISerialize* inSerialize)
+    {
+        inSerialize->propertyFloat("pos.x",pos.x);
+        inSerialize->propertyFloat("pos.y",pos.y);
+    };
+
     struct
     {
         bool pendingDestroy {false};
     } flags;
+
 
     Vec2f pos {};
     GameState& state;
@@ -29,4 +35,17 @@ public:
     void SpawnnCutLine(CutLine cut ) ;
     void SpawnnObstacle(Obstacle cut ) ;
 
+};
+
+
+struct ActorFactoryEntry
+{
+    std::string className;
+    std::function<std::unique_ptr<Actor>(class GameState&)> construct;
+};
+
+
+struct ActorFactory
+{
+    std::vector<ActorFactoryEntry> entries;
 };

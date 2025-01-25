@@ -3,6 +3,7 @@
 #include <cmath>
 #include <iostream>
 
+#include "editorState.hpp"
 #include "textureRenderer.hpp"
 #include "window.hpp"
 #include "gameState.hpp"
@@ -11,7 +12,7 @@
 class EditorWindow : public Window
 {
     public:
-        explicit EditorWindow(GameState& inState) : Window("EditorWindow"), state(inState) {}
+        explicit EditorWindow(GameState& inState,EditorState& inEdState) : Window("EditorWindow"), state(inState), edState(inEdState) {}
 
         void onInstanced() override
         {
@@ -32,6 +33,7 @@ class EditorWindow : public Window
             renderer.changeSize(newSize);
         }
 
+
         void onUpdate(float deltaTime) override
         {
             Vec2f mousePos;
@@ -46,6 +48,38 @@ class EditorWindow : public Window
                     Vector2 delta = GetMouseDelta();
                     delta = Vector2Scale(delta, -1.0f/camera.zoom);
                     camera.target = Vector2Add(camera.target, delta);
+                }
+
+                if(!edState.draggingActor.expired())
+                {
+                    Vector2 delta = GetMouseDelta();
+                    delta = Vector2Scale(delta, -1.0f/camera.zoom);
+                    edState.draggingActor.lock()->pos -= delta;
+                }
+
+                if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+                {
+                    if(edState.toPlace)
+                    {
+                        edState.toPlace->pos = mouseWorldPos;
+                        state.actors.values.push_back(std::move(edState.toPlace));
+                    }
+                    for (auto& it : state.actors.values)
+                    {
+                        Vec2f inWorld = it->pos;
+                        std::cout << inWorld.x << " " << inWorld.y << " | " << mouseWorldPos.y << " " << mouseWorldPos.y << std::endl;
+                        if (mouseWorldPos.x > inWorld.x && mouseWorldPos.x < inWorld.x+20
+                            &&  mouseWorldPos.y > inWorld.y && mouseWorldPos.y < inWorld.y+20)
+                        {
+                            edState.draggingActor = it;
+                            edState.selectedActor = it;
+                        }
+                    }
+                }
+
+                if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
+                {
+                    edState.draggingActor = {};
                 }
                 float wheel = GetMouseWheelMove();
 
@@ -67,7 +101,10 @@ class EditorWindow : public Window
                 for (auto& it : state.actors.values)
                 {
                     it->onDraw();
-                    //DrawRectangle(it->pos)
+                }
+                for (auto& it : state.actors.values)
+                {
+                    DrawRectangle(it->pos.x,it->pos.y,20,20,RED);
                 }
                 EndMode2D();
             });
@@ -81,6 +118,7 @@ class EditorWindow : public Window
 
     protected:
         GameState& state;
+        EditorState& edState;
         TextureRenderer renderer;
         Camera2D camera {0};
 };
