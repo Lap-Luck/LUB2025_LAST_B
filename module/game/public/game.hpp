@@ -5,6 +5,7 @@
 #include "obstacle.hpp"
 #include "raymath.h"
 #include "vec2.hpp"
+#include "inputManager.hpp"
 
 class Game;
 
@@ -23,8 +24,8 @@ public:
     }
 
     void frame(std::vector<Obstacle> &obs){
-        if (IsKeyDown(KEY_RIGHT)) vel.x=Lerp(vel.x,2000.0,0.001f);
-        if (IsKeyDown(KEY_LEFT)) vel.x=Lerp(vel.x,-2000.0,0.001f);
+        if (IsKeyDown(KEY_RIGHT) || InputManager::get()->gyroscope.z < 0) vel.x=Lerp(vel.x,2000.0,0.001f);
+        if (IsKeyDown(KEY_LEFT) || InputManager::get()->gyroscope.z > 0 ) vel.x=Lerp(vel.x,-2000.0,0.001f);
 
         vel.y=Lerp(vel.y,-100.0,0.02f);
         pos=Vector2Add(pos,Vector2Scale(vel,0.016));
