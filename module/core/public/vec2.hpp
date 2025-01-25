@@ -2,6 +2,8 @@
 
 #include <raylib.h>
 
+#include "raymath.h"
+
 struct ImVec2;
 
 template <typename T>
@@ -36,20 +38,3 @@ using Vec2f = Vec2<float>;
 
 
 
-struct IntRangeIT{
-    int value;
-    bool operator!=(IntRangeIT b) {return value != b.value;}
-    int operator*() {return value;}
-    void operator++() {++value;}
-};
-
-struct IntRange{
-    int to;
-    IntRangeIT begin() {return (IntRangeIT){0}; }
-    IntRangeIT end() {return (IntRangeIT){to};}
-    bool has(int e){
-        return (e>=0)&(e<to);
-    }
-};
-
-inline IntRange range(int to){return (IntRange){to};}

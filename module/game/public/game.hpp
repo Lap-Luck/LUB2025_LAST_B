@@ -6,6 +6,7 @@
 #include "raymath.h"
 #include "vec2.hpp"
 
+class Game;
 
 class Bubble
 {
@@ -21,11 +22,27 @@ public:
         this->r=_r;
     }
 
-    void frame(){
+    void frame(std::vector<Obstacle> &obs){
         if (IsKeyDown(KEY_RIGHT)) vel.x=Lerp(vel.x,100.0,0.1f);
         if (IsKeyDown(KEY_LEFT)) vel.x=Lerp(vel.x,-100.0,0.1f);
 
         pos=Vector2Add(pos,Vector2Scale(vel,0.016));
+
+        for (int o_id:range(obs.size())) {
+            Obstacle o=obs[o_id];
+            for (int s_id:range(o.segments.size())) {
+                ObSegment s=o.segments[s_id];
+                Vector2 A={((float)s.ax+0.5f)*20.0f,((float)s.ax+0.5f)*20.0f};
+                Vector2 B={((float)s.bx+0.5f)*20.0f,((float)s.bx+0.5f)*20.0f};
+                float d=DistanceSegment(A,B,pos);
+                if (d<r) {
+                    float pen=(r-d)*1.001;
+                    pos=Vector2Add(pos,Vector2Normalize(Vector2Subtract(pos,A)));
+                }
+            }
+        }
+
+
     }
 };
 
