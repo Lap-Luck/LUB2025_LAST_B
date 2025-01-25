@@ -29,6 +29,11 @@ void Game::onInitialize()
 
     col_mask4=LoadObstacleMask(LoadImage48("col_long.png"));
 
+    auto cmasks=LoadObstacleMasks(LoadImage48("szczupak_final_mask.png"),2);
+
+    col_m1=cmasks[0];
+    col_m2=cmasks[1];
+
     /*obstacles.obstacles.push_back(Obstacle(&col_mask,{0.0,250.0},10.0f));
     obstacles.obstacles.push_back(Obstacle(&col_mask,{300.0,0.0},10.0f));
     obstacles.obstacles.push_back(Obstacle(&col_mask,{300.0,-300.0},10.0f));
@@ -66,6 +71,13 @@ void Game::onInitialize()
     {
         Obstacle longObstacle = Obstacle(&col_mask4,{200.0,-550.0},10.0f);
         state.obstacles.values.push_back(std::move(longObstacle));
+    }
+
+    {
+        Obstacle m1Obstacle = Obstacle(&col_m1,{200.0,-750.0},10.0f);
+        state.obstacles.values.push_back(std::move(m1Obstacle));
+        Obstacle m2Obstacle = Obstacle(&col_m2,{200.0,-750.0},10.0f);
+        state.obstacles.values.push_back(std::move(m2Obstacle));
     }
 
     state.cuts.values.push_back(CutLine({280.0,0.0},-50.0));

@@ -3,11 +3,22 @@
 Obstacle::ObstacleId Obstacle::globalIdCounter = 0;
 CutLine::CutLineId CutLine::globalIdCounter = 0;
 
+namespace {
+    bool is_proper_color(int r,int g, int gen) {
+        bool res=false;
+        {
+            if(r==0 && g==0 && gen==0) res=true;
+            if(r!=0 && g==0 && gen==1) res=true;
+        }
+        return res;
+    }
+}
+
 
 std::vector<ObstacleMask> LoadObstacleMasks(Image _img,int num)
 {
     std::vector<ObstacleMask> vres;
-    Color cs[2]={BLACK, RED};
+    Color cs[2]={BLACK, Color(0,0,0   )};
     for (int color_id:range(num)){
         Color c=cs[color_id];
         ObstacleMask res;
@@ -27,11 +38,14 @@ std::vector<ObstacleMask> LoadObstacleMasks(Image _img,int num)
         {
             for (int y : range(res.size.y))
             {
-                if (
-                    (((char*)_img.data)[(y * res.size.x + x) * 4 + 0] == c.r) &&
-                    (((char*)_img.data)[(y * res.size.x + x) * 4 + 1] == c.g)
+                bool is_ok=is_proper_color(
+                ((char*)_img.data)[(y * res.size.x + x) * 4 + 0],
+                ((char*)_img.data)[(y * res.size.x + x) * 4 + 1],
+                color_id
+                );
 
-                    )
+
+                if (is_ok)
                 {
                     res.mask[x][y] = 1;
                 }

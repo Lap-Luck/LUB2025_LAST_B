@@ -30,4 +30,6 @@ protected:
     ObstacleMask col_mask;
     ObstacleMask col_mask3;
     ObstacleMask col_mask4;
+    ObstacleMask col_m1;
+    ObstacleMask col_m2;
 };
