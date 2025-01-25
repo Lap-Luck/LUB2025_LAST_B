@@ -8,6 +8,8 @@
 struct Texture2DPlus {
     Texture2D img;
     std::vector<ObstacleMask> masks;
+    float obstaclePixelsSizeX;
+    float obstaclePixelsSizeY;
 };
 
 namespace {
@@ -27,6 +29,11 @@ namespace {
         ObstacleMask spikeMask;
         spikeMask= LoadObstacleMask(LoadImage48(path2));
         texture_2d_plus.masks.push_back(std::move(spikeMask));
+
+        texture_2d_plus.obstaclePixelsSizeX=texture_2d_plus.img.width/((float)spikeMask.size.x);
+        texture_2d_plus.obstaclePixelsSizeY=texture_2d_plus.img.height/((float)spikeMask.size.y);
+
+
         return  texture_2d_plus;
     }
 
