@@ -91,9 +91,14 @@ struct Vec2
         return Vector2LengthSqr(*this);
     }
 
-    void normalize()
+    void normalizeThat()
     {
         *this = Vector2Normalize(*this);
+    }
+
+    Vec2 normalized()
+    {
+        return Vector2Normalize(*this);
     }
 
 
