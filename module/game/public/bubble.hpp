@@ -66,6 +66,11 @@ public:
     int divided;
     float lifetime;
 
+    struct
+    {
+        bool pendingDestroy {false};
+    } flags;
+
 
     Bubble(Vector2 _pos,Vector2 _vel,float _r,int _divided=0,int p_num=10){
         this->pos=_pos;

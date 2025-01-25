@@ -193,7 +193,10 @@ public:
     static ObstacleId globalIdCounter;
     ObstacleId unique_id {};
 
-    bool pendingDestroy {false};
+    struct
+    {
+        bool pendingDestroy {false};
+    } flags;
 
     Vector2 pos {};
     float scale {1};

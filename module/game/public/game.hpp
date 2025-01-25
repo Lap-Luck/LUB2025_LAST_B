@@ -9,11 +9,6 @@
 #include "bubble.hpp"
 
 
-
-
-
-
-
 namespace{
     Image LoadImage48(char* path){
         Image img=LoadImage(path);
@@ -26,10 +21,10 @@ namespace{
 class ObstacleContainer
 {
 public:
-    std::vector<Obstacle> obstacles;
+    std::vector<Obstacle> values;
     Obstacle* getById(Obstacle::ObstacleId id)
     {
-        for(auto& it : obstacles)
+        for(auto& it : values)
         {
             if (it.unique_id == id)
                 return &it;
@@ -39,13 +34,25 @@ public:
 
     void deletePending()
     {
-        std::erase_if(obstacles, [](auto& x)
+        std::erase_if(values, [](auto& x)
         {
-            return x.pendingDestroy;
+            return x.flags.pendingDestroy;
         });
     }
+};
 
+class BubblesContainer
+{
+public:
+    std::vector<Bubble> values;
 
+    void deletePending()
+    {
+        std::erase_if(values, [](auto& x)
+        {
+            return x.flags.pendingDestroy;
+        });
+    }
 };
 
 class Game
@@ -60,7 +67,7 @@ public:
 
     Vec2i screenSize {};
 
-    std::vector<Bubble> bubbles;
+    BubblesContainer bubbles;
     ObstacleContainer obstacles;
     std::vector<CutLine> cuts;
 
