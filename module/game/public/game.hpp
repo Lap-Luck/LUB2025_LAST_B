@@ -1,6 +1,8 @@
 #pragma once
+#include <memory>
 #include <vector>
 
+#include "actor.hpp"
 #include "gameState.hpp"
 #include "obstacle.hpp"
 #include "raymath.h"
@@ -55,6 +57,20 @@ public:
     }
 };
 
+class ActorContainer
+{
+public:
+    std::vector<std::unique_ptr<Actor>> values;
+
+    void deletePending()
+    {
+        std::erase_if(values, [](auto& x)
+        {
+            return x->flags.pendingDestroy;
+        });
+    }
+};
+
 class Game
 {
 public:
@@ -67,8 +83,9 @@ public:
 
     Vec2i screenSize {};
 
-    BubblesContainer bubbles;
-    ObstacleContainer obstacles;
+    BubblesContainer bubbles {};
+    ObstacleContainer obstacles {};
+    ActorContainer actors {};
     std::vector<CutLine> cuts;
 
 protected:

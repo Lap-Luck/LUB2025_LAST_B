@@ -70,6 +70,11 @@ void Game::onInitialize()
 
 void Game::onUpdate(float deltaTime)
 {
+    for (auto& it : actors.values)
+    {
+       it->onDraw();
+    }
+
     for (int b_id:range(bubbles.values.size())){
         Bubble& b=bubbles.values[b_id];
         b.frame(obstacles.values,cuts);
@@ -82,8 +87,6 @@ void Game::onUpdate(float deltaTime)
             if (bubbles.values[b_id].cut_id!=-1) {
                 Bubble cut_bubble=bubbles.values[b_id];
                 if (cut_bubble.divided<4) {
-
-
                     std::vector<BubbleP> particlesAB[2];
                     {
                         for (int p_id:range(cut_bubble.particles.size())) {
@@ -132,6 +135,7 @@ void Game::onUpdate(float deltaTime)
 
     obstacles.deletePending();
     bubbles.deletePending();
+    actors.deletePending();
 }
 
 void Game::onDraw()
