@@ -8,6 +8,7 @@
 #include "gameWindow.hpp"
 
 WindowManager*  WindowManager::instance = nullptr;
+InputManager*   InputManager::instance = nullptr;
 
 int main(void)
 {
@@ -24,7 +25,8 @@ int main(void)
         Vec2i{1280,720},
         [&state]
         {
-            state.assets.unknownTexture = LoadTexture("assets/unknown.png");
+            ChangeDirectory("assets");
+            state.assets.unknownTexture = LoadTexture("unknown.png");
         }
     );
 
