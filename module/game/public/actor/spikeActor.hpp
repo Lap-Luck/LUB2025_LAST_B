@@ -10,6 +10,11 @@ public:
     CutLine::CutLineId cutId {};
 
     SpikeActor(GameState& inState,Vec2f inPos) : Actor(inState), pos(inPos) {}
+    ~SpikeActor()
+    {
+        if(state.cuts.getById(cutId))
+            state.cuts.getById(cutId)->flags.pendingDestroy = true;
+    }
 
     void onPlaced() override
     {
