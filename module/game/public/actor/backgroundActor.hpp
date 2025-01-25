@@ -8,7 +8,9 @@
 class BackgroundActor : public Actor
 {
 public:
-    std::string selectedTexture = "";
+    std::string selectedTexture = "unknown";
+    float scale = 1.0;
+    float rotation = 0.0;
 
     BackgroundActor(GameState& inState,Vec2f inPos) : Actor(inState,inPos) {}
     ~BackgroundActor()
@@ -31,11 +33,13 @@ public:
         }
 
         inSerialize->propertyEnum("selectedTexture",keys,selectedTexture);
+        inSerialize->propertyFloat("scale",scale);
+        inSerialize->propertyFloat("rotation",rotation);
     }
 
     void onDraw() override
     {
         auto& texture = state.assets.backgroundSprite[selectedTexture];
-        DrawTexture(texture,pos.x,pos.y,WHITE);
+        DrawTextureEx(texture,pos,rotation,scale,WHITE);
     }
 };

@@ -57,6 +57,12 @@ public:
             {
                 std::erase_if(state.actors.values,[&](auto& in) { return in.get() == edState.selectedActor.lock().get(); });
             }
+            if(ImGui::Button("MoveToTop"))
+            {
+                std::shared_ptr<Actor> temp = edState.selectedActor.lock();
+                std::erase_if(state.actors.values,[&](auto& in) { return in.get() == edState.selectedActor.lock().get(); });
+                state.actors.values.push_back(std::move(temp));
+            }
         }
 
 

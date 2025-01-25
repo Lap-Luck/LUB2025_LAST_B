@@ -63,6 +63,7 @@ class EditorWindow : public Window
                     {
                         edState.toPlace->pos = mouseWorldPos;
                         state.actors.values.push_back(std::move(edState.toPlace));
+                        edState.selectedActor =state.actors.values[state.actors.values.size()-1];
                     }
                     for (auto& it : state.actors.values)
                     {
