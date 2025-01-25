@@ -21,9 +21,21 @@ struct Vec2
         return Vector2Add(*this, other);
     }
 
+    Vec2 operator+=(Vec2<T> other)
+    {
+        *this = operator+(other);
+        return *this;
+    }
+
     Vec2 operator+(T other)
     {
         return Vector2AddValue(*this, other);
+    }
+
+    Vec2 operator+=(T other)
+    {
+        *this = operator+(other);
+        return *this;
     }
 
     Vec2 operator-(Vec2<T> other)
@@ -31,14 +43,32 @@ struct Vec2
         return Vector2Subtract(*this, other);
     }
 
+    Vec2 operator-=(Vec2<T> other)
+    {
+        *this = operator-(other);
+        return *this;
+    }
+
     Vec2 operator-(T other)
     {
         return Vector2Subtract(*this, other);
     }
 
+    Vec2 operator-=(T other)
+    {
+        *this = operator-(other);
+        return *this;
+    }
+
     Vec2 operator*(T other)
     {
         return Vector2Scale(*this, other);
+    }
+
+    Vec2 operator*=(T other)
+    {
+        *this = operator*(other);
+        return *this;
     }
 
     float dotProduct(Vec2<T> other)
