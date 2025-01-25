@@ -8,6 +8,8 @@
 class SpikeActor : public Actor
 {
 public:
+    ACTOR_BODY(SpikeActor);
+
     CutLine::CutLineId cutId {};
     Obstacle::ObstacleId  obstalceId {};
     float scale=1.0f/8.0f;

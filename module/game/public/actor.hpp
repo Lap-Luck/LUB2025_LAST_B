@@ -3,11 +3,17 @@
 #include "obstacle.hpp"
 #include "vec2.hpp"
 
+#define ACTOR_BODY(className) \
+static constexpr std::string ClassName = #className; \
+std::string getClassName() override {return ClassName;}
+
 class GameState;
 
 class Actor
 {
 public:
+    virtual std::string getClassName() = 0;
+
     virtual ~Actor() ;
     Actor(GameState& inGameState,Vec2f inPos) : state(inGameState), pos(inPos) {};
 

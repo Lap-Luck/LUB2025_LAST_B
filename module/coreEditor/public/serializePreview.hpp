@@ -13,6 +13,14 @@ public:
         }
     }
 
+    void propertyString(std::string inName, std::string& inValue) override
+    {
+        char buffor[1024];
+        strncpy(buffor,inValue.c_str(),1024);
+        ImGui::InputText(inName.c_str(),buffor,1024);
+        inValue = buffor;
+    }
+
     void propertyFloat(std::string inName, float& inValue) override
     {
         float temp = inValue;

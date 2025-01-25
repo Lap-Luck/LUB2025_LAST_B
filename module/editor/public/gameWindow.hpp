@@ -35,8 +35,13 @@ class GameWindow : public Window
 
         void onUpdate(float deltaTime) override
         {
+
             if(focused)
+            {
+                if (IsKeyPressed(KEY_ESCAPE))
+                    pendingDestroy = true;
                 game.onUpdate(deltaTime);
+            }
 
             renderer.drawContent([&]()
             {

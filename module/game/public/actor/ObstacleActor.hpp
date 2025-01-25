@@ -3,6 +3,8 @@
 class ObstacleActor : public Actor
 {
 public:
+    ACTOR_BODY(ObstacleActor);
+
     int grafix_id=0;
 
     ObstacleActor(GameState& inState,Vec2f inPos,int _grafix_id ) : Actor(inState,inPos),grafix_id(_grafix_id){}

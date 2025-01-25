@@ -8,6 +8,8 @@
 class BackgroundActor : public Actor
 {
 public:
+    ACTOR_BODY(BackgroundActor);
+
     std::string selectedTexture = "unknown";
     float scale = 1.0;
     float rotation = 0.0;

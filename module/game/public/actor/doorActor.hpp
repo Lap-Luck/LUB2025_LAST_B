@@ -3,7 +3,7 @@
 class DoorActor : public Actor
 {
 public:
-
+    ACTOR_BODY(DoorActor);
 
     DoorActor(GameState& inState,Vec2f inPos) : Actor(inState,inPos) {}
     ~DoorActor(){}
