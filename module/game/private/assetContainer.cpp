@@ -10,6 +10,7 @@ void AssetsContainer::load()
     obstaclesTexturesPlus.push_back(Load2DPlus("buton_off_full.png","buton_off_full_mask.png"));
     obstaclesTexturesPlus.push_back(Load2DPlus("szczupak_final.png","szczupak_final_mask.png"));
     obstaclesTexturesPlus.push_back(Load2DPlus("stranght3.png","stranght3_mask.png"));
+    obstaclesTexturesPlus.push_back(Load2DPlus("hook.png","hook_mask.png"));
 
 
     backgroundSprite["kugelfisch3"] = LoadTexture("background/kugelfisch3.png");
