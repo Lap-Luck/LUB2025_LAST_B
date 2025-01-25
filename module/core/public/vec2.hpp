@@ -1,33 +1,66 @@
 #pragma once
 
 #include <raylib.h>
-
 #include "raymath.h"
-
-struct ImVec2;
 
 template <typename T>
 struct Vec2
 {
     Vec2() = default;
-    constexpr Vec2(T inX, T inY) : x(inX),y(inY) {};
-    constexpr Vec2(const ImVec2& in) : x(in.x),y(in.x) {};
+    Vec2(T inX, T inY) : x(inX),y(inY) {};
 
-    explicit operator struct Vector2()
+    Vec2(struct Vector2 in) : x(in.x),y(in.y) {};
+
+    operator struct Vector2()
     {
         return (struct Vector2){x,y};
     }
 
-    void operator+=(const Vec2& other)
+    Vec2 operator+(Vec2<T> other)
     {
-        x += other.x;
-        y += other.y;
+        return Vector2Add(*this, other);
+    }
+
+    Vec2 operator+(T other)
+    {
+        return Vector2AddValue(*this, other);
+    }
+
+    Vec2 operator-(Vec2<T> other)
+    {
+        return Vector2Subtract(*this, other);
+    }
+
+    Vec2 operator-(T other)
+    {
+        return Vector2Subtract(*this, other);
     }
 
     Vec2 operator*(T other)
     {
-        return {x*other,y*other};
+        return Vector2Scale(*this, other);
     }
+
+    float dotProduct(Vec2<T> other)
+    {
+        return Vector2DotProduct(*this, other);
+    }
+
+    Vec2<T> crossProduct(Vec2<T> other)
+    {
+        return Vector2CrossProduct(*this, other);
+    }
+
+    float length(Vec2<T> other)
+    {
+        return Vector2Length(*this);
+    }
+
+    float lengthSqrt(Vec2<T> other)
+    {
+        return Vector2LengthSqr(*this);
+    }
+
 
     T x {};
     T y {};
