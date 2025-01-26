@@ -26,7 +26,7 @@ class GameWindow : public Window
 
             game.screenSize = Vec2i{1280,720};
 
-            game.onInitialize();
+            //game.onInitialize();
         }
 
         void onResize(Vec2i oldSize, Vec2i newSize) override

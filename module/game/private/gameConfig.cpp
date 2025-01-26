@@ -13,6 +13,9 @@ void GameConfig::onSerialize(ISerialize* inSerialize,class GameState& state)
     {
         inSerialize->propertyEnum("ObstacleOnHitSound",state.assets.soundKeys,ObstacleOnHitSound);
         inSerialize->propertyFloat("ObstacleOnHitVolume",ObstacleOnHitVolume);
+
+        inSerialize->propertyEnum("DoorSound",state.assets.soundKeys,DoorSound);
+        inSerialize->propertyFloat("DoorVolume",DoorVolume);
     });
 
     inSerialize->propertyStruct("PhysicsConfig",[&](auto* ctx)

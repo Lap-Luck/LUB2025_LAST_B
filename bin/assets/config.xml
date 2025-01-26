@@ -3,7 +3,9 @@
 	<minimalCameraSpeed>1.000000</minimalCameraSpeed>
 	<Sound/>
 	<ObstacleOnHitSound>wallHit</ObstacleOnHitSound>
-	<ObstacleOnHitVolume>0.005000</ObstacleOnHitVolume>
+	<ObstacleOnHitVolume>0.000000</ObstacleOnHitVolume>
+	<DoorSound>Dooropen</DoorSound>
+	<DoorVolume>1.000000</DoorVolume>
 	<PhysicsConfig>
 		<type>0</type>
 		<lerp_gravity>0</lerp_gravity>

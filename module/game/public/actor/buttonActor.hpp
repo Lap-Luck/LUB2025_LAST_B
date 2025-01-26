@@ -19,9 +19,10 @@ public:
             //TraceLog(LOG_INFO,"DOOR OPEN");
             if (active) {
                 state.last_signal=signal_name;
+
+                PlaySound(state.assets.sound[state.config.DoorSound]);
                 active=false;
             }
-
         };
 
 

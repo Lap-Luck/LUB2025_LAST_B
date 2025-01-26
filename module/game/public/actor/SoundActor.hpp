@@ -38,8 +38,11 @@ public:
 
     void onUpdate() override
     {
-        if (!IsSoundPlaying(state.assets.sound[selectedSound]))
-            PlaySound(state.assets.sound[selectedSound]);
+        if (loop)
+        {
+            if (!IsSoundPlaying(state.assets.sound[selectedSound]))
+                PlaySound(state.assets.sound[selectedSound]);
+        }
     }
 
     void onDraw() override

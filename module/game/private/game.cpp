@@ -25,6 +25,10 @@ void Game::onInitialize()
     state.bubbles.values.clear();
     state.cuts.values.clear();
     state.obstacles.values.clear();
+    state.temp = {};
+    state.sceneControl = {};
+    state.last_signal = {};
+    cameraHeigth = {};
 
 
     /*state.actors.values.push_back(std::make_unique<SpikeActor>(state,Vec2f{0,0}));
@@ -98,6 +102,7 @@ void Game::onInitialize()
     }
 
     SetSoundVolume(state.assets.sound[state.config.ObstacleOnHitSound],state.config.ObstacleOnHitVolume);
+    SetSoundVolume(state.assets.sound[state.config.DoorSound],state.config.DoorVolume);
 
     for (auto& it : state.actors.values)
     {
@@ -193,12 +198,11 @@ void Game::onUpdate(float deltaTime)
     if (state.levelConfig.spawnBubble && IsWinOver()) {
         state.sceneControl.changeLevel = "winOver";
     }
-    if (state.sceneControl.changeLevel)
+    if (!state.sceneControl.changeLevel.empty())
     {
-        loadFromFile(state.sceneControl.changeLevel.value(),state);
-        onInitialize();
-
+        loadFromFile(state.sceneControl.changeLevel,state);
         state.sceneControl.changeLevel = {};
+        onInitialize();
     }
 }
 

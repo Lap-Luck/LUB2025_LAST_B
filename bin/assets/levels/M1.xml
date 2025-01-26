@@ -25,10 +25,10 @@
 	</actor>
 	<actor>
 		<TYPE>BackgroundActor</TYPE>
-		<pos.x>201.132248</pos.x>
-		<pos.y>-3527.946533</pos.y>
+		<pos.x>351.522858</pos.x>
+		<pos.y>-3646.852783</pos.y>
 		<selectedTexture>Tlo_darkBlue1</selectedTexture>
-		<scale>1.000000</scale>
+		<scale>1.200000</scale>
 		<rotation>0.000000</rotation>
 	</actor>
 	<actor>
@@ -41,24 +41,8 @@
 	</actor>
 	<actor>
 		<TYPE>BackgroundActor</TYPE>
-		<pos.x>-14.398438</pos.x>
-		<pos.y>-5124.831543</pos.y>
-		<selectedTexture>Tlo_darkBlue1</selectedTexture>
-		<scale>1.000000</scale>
-		<rotation>0.000000</rotation>
-	</actor>
-	<actor>
-		<TYPE>BackgroundActor</TYPE>
 		<pos.x>-6.398438</pos.x>
 		<pos.y>-5828.831543</pos.y>
-		<selectedTexture>Tlo_darkBlue1</selectedTexture>
-		<scale>1.000000</scale>
-		<rotation>0.000000</rotation>
-	</actor>
-	<actor>
-		<TYPE>BackgroundActor</TYPE>
-		<pos.x>-22.398438</pos.x>
-		<pos.y>-6620.831543</pos.y>
 		<selectedTexture>Tlo_darkBlue1</selectedTexture>
 		<scale>1.000000</scale>
 		<rotation>0.000000</rotation>
@@ -98,24 +82,9 @@
 		<pos.y>-1351.718994</pos.y>
 	</actor>
 	<actor>
-		<TYPE>ObstacleActor</TYPE>
-		<pos.x>-463.757812</pos.x>
-		<pos.y>-5990.333984</pos.y>
-		<grafix_id>11</grafix_id>
-		<scale>2.200000</scale>
-		<orientation>NormalOrientation</orientation>
-	</actor>
-	<actor>
-		<TYPE>DoorActor</TYPE>
-		<pos.x>390.815247</pos.x>
-		<pos.y>-4697.273438</pos.y>
-		<signal_name>a</signal_name>
-		<scale>1.000000</scale>
-	</actor>
-	<actor>
 		<TYPE>BackgroundActor</TYPE>
-		<pos.x>-556.969604</pos.x>
-		<pos.y>-329.991699</pos.y>
+		<pos.x>-504.631958</pos.x>
+		<pos.y>-248.265625</pos.y>
 		<selectedTexture>kugelfisch3</selectedTexture>
 		<scale>1.400000</scale>
 		<rotation>0.000000</rotation>
@@ -124,33 +93,25 @@
 		<TYPE>BackgroundActor</TYPE>
 		<pos.x>-467.568787</pos.x>
 		<pos.y>-1196.105103</pos.y>
-		<selectedTexture>seahorse_import2ï¿½ï¿½&gt;V]</selectedTexture>
+		<selectedTexture>seahorse_import2˜ò&gt;V]</selectedTexture>
 		<scale>1.600000</scale>
 		<rotation>-15.000000</rotation>
 	</actor>
 	<actor>
 		<TYPE>BackgroundActor</TYPE>
-		<pos.x>481.401703</pos.x>
-		<pos.y>-138.384247</pos.y>
+		<pos.x>478.349945</pos.x>
+		<pos.y>-132.280731</pos.y>
 		<selectedTexture>easteregg</selectedTexture>
-		<scale>2.400000</scale>
+		<scale>1.400000</scale>
 		<rotation>0.000000</rotation>
 	</actor>
 	<actor>
 		<TYPE>ObstacleActor</TYPE>
-		<pos.x>-46.358128</pos.x>
-		<pos.y>385.686493</pos.y>
+		<pos.x>-104.951874</pos.x>
+		<pos.y>381.780243</pos.y>
 		<grafix_id>10</grafix_id>
 		<scale>3.200001</scale>
 		<orientation>NormalOrientation</orientation>
-	</actor>
-	<actor>
-		<TYPE>ObstacleActor</TYPE>
-		<pos.x>-476.108032</pos.x>
-		<pos.y>-252.647369</pos.y>
-		<grafix_id>7</grafix_id>
-		<scale>2.000000</scale>
-		<orientation>FlipHorizontal</orientation>
 	</actor>
 	<actor>
 		<TYPE>BackgroundActor</TYPE>
@@ -178,23 +139,7 @@
 	</actor>
 	<actor>
 		<TYPE>BackgroundActor</TYPE>
-		<pos.x>-623.131348</pos.x>
-		<pos.y>-3979.564453</pos.y>
-		<selectedTexture>easteregg</selectedTexture>
-		<scale>2.200000</scale>
-		<rotation>90.000000</rotation>
-	</actor>
-	<actor>
-		<TYPE>ObstacleActor</TYPE>
-		<pos.x>-1196.412109</pos.x>
-		<pos.y>-3697.615723</pos.y>
-		<grafix_id>13</grafix_id>
-		<scale>3.600000</scale>
-		<orientation>FlipHorizontal</orientation>
-	</actor>
-	<actor>
-		<TYPE>BackgroundActor</TYPE>
-		<pos.x>606.555298</pos.x>
+		<pos.x>585.305298</pos.x>
 		<pos.y>-4178.626953</pos.y>
 		<selectedTexture>kugelfisch3</selectedTexture>
 		<scale>1.200000</scale>
@@ -215,20 +160,328 @@
 		<to_move>-1050.000000</to_move>
 	</actor>
 	<actor>
-		<TYPE>ButtonActor</TYPE>
-		<pos.x>-500.274292</pos.x>
-		<pos.y>-4736.384277</pos.y>
-		<signal_name>a</signal_name>
+		<TYPE>SpikeActor</TYPE>
+		<pos.x>-151.287842</pos.x>
+		<pos.y>-3328.205566</pos.y>
+	</actor>
+	<actor>
+		<TYPE>ObstacleActor</TYPE>
+		<pos.x>-209.652100</pos.x>
+		<pos.y>-3559.899902</pos.y>
+		<grafix_id>8</grafix_id>
+		<scale>0.600000</scale>
+		<orientation>NormalOrientation</orientation>
+	</actor>
+	<actor>
+		<TYPE>ObstacleActor</TYPE>
+		<pos.x>-594.188232</pos.x>
+		<pos.y>-3580.861816</pos.y>
+		<grafix_id>10</grafix_id>
+		<scale>0.600000</scale>
+		<orientation>NormalOrientation</orientation>
+	</actor>
+	<actor>
+		<TYPE>ObstacleActor</TYPE>
+		<pos.x>644.595947</pos.x>
+		<pos.y>-3570.720215</pos.y>
+		<grafix_id>10</grafix_id>
+		<scale>0.600000</scale>
+		<orientation>NormalOrientation</orientation>
+	</actor>
+	<actor>
+		<TYPE>ObstacleActor</TYPE>
+		<pos.x>438.184692</pos.x>
+		<pos.y>-3648.206055</pos.y>
+		<grafix_id>13</grafix_id>
+		<scale>0.400000</scale>
+		<orientation>NormalOrientation</orientation>
+	</actor>
+	<actor>
+		<TYPE>ObstacleActor</TYPE>
+		<pos.x>611.340942</pos.x>
+		<pos.y>-3451.065430</pos.y>
+		<grafix_id>13</grafix_id>
+		<scale>0.200000</scale>
+		<orientation>NormalOrientation</orientation>
+	</actor>
+	<actor>
+		<TYPE>SpikeActor</TYPE>
+		<pos.x>391.465942</pos.x>
+		<pos.y>-3481.799805</pos.y>
+	</actor>
+	<actor>
+		<TYPE>ObstacleActor</TYPE>
+		<pos.x>316.387573</pos.x>
+		<pos.y>-3688.204834</pos.y>
+		<grafix_id>13</grafix_id>
+		<scale>0.200000</scale>
+		<orientation>NormalOrientation</orientation>
+	</actor>
+	<actor>
+		<TYPE>ObstacleActor</TYPE>
+		<pos.x>318.990387</pos.x>
+		<pos.y>-3839.468994</pos.y>
+		<grafix_id>13</grafix_id>
+		<scale>0.200000</scale>
+		<orientation>NormalOrientation</orientation>
+	</actor>
+	<actor>
+		<TYPE>ObstacleActor</TYPE>
+		<pos.x>390.921753</pos.x>
+		<pos.y>-3890.791992</pos.y>
+		<grafix_id>10</grafix_id>
+		<scale>0.000000</scale>
+		<orientation>NormalOrientation</orientation>
+	</actor>
+	<actor>
+		<TYPE>ObstacleActor</TYPE>
+		<pos.x>678.231628</pos.x>
+		<pos.y>-3876.114746</pos.y>
+		<grafix_id>10</grafix_id>
+		<scale>0.200000</scale>
+		<orientation>NormalOrientation</orientation>
+	</actor>
+	<actor>
+		<TYPE>BackgroundActor</TYPE>
+		<pos.x>-67.865219</pos.x>
+		<pos.y>381.367188</pos.y>
+		<selectedTexture>diver</selectedTexture>
+		<scale>0.400000</scale>
+		<rotation>0.000000</rotation>
+	</actor>
+	<actor>
+		<TYPE>ObstacleActor</TYPE>
+		<pos.x>-421.145874</pos.x>
+		<pos.y>-173.118561</pos.y>
+		<grafix_id>7</grafix_id>
+		<scale>2.000000</scale>
+		<orientation>FlipHorizontal</orientation>
+	</actor>
+	<actor>
+		<TYPE>ObstacleActor</TYPE>
+		<pos.x>524.620544</pos.x>
+		<pos.y>-3874.452881</pos.y>
+		<grafix_id>10</grafix_id>
+		<scale>0.200000</scale>
+		<orientation>NormalOrientation</orientation>
 	</actor>
 	<actor>
 		<TYPE>ButtonActor</TYPE>
-		<pos.x>36.338867</pos.x>
-		<pos.y>-497.776367</pos.y>
+		<pos.x>345.022949</pos.x>
+		<pos.y>-3947.259033</pos.y>
 		<signal_name>a</signal_name>
+	</actor>
+	<actor>
+		<TYPE>ObstacleActor</TYPE>
+		<pos.x>-154.750061</pos.x>
+		<pos.y>-3731.545898</pos.y>
+		<grafix_id>13</grafix_id>
+		<scale>0.400000</scale>
+		<orientation>NormalOrientation</orientation>
+	</actor>
+	<actor>
+		<TYPE>ObstacleActor</TYPE>
+		<pos.x>662.437256</pos.x>
+		<pos.y>-3386.233398</pos.y>
+		<grafix_id>12</grafix_id>
+		<scale>0.200000</scale>
+		<orientation>FlipHorizontal</orientation>
+	</actor>
+	<actor>
+		<TYPE>SpikeActor</TYPE>
+		<pos.x>260.874878</pos.x>
+		<pos.y>-3609.670898</pos.y>
+	</actor>
+	<actor>
+		<TYPE>BackgroundActor</TYPE>
+		<pos.x>-77.330048</pos.x>
+		<pos.y>-6312.604004</pos.y>
+		<selectedTexture>Tlo_darkBlue1</selectedTexture>
+		<scale>1.000000</scale>
+		<rotation>0.000000</rotation>
+	</actor>
+	<actor>
+		<TYPE>BackgroundActor</TYPE>
+		<pos.x>-14.398438</pos.x>
+		<pos.y>-5124.831543</pos.y>
+		<selectedTexture>Tlo_darkBlue1</selectedTexture>
+		<scale>1.000000</scale>
+		<rotation>0.000000</rotation>
+	</actor>
+	<actor>
+		<TYPE>BackgroundActor</TYPE>
+		<pos.x>-71.246994</pos.x>
+		<pos.y>-7059.714355</pos.y>
+		<selectedTexture>Tlo_darkBlue1</selectedTexture>
+		<scale>1.200000</scale>
+		<rotation>0.000000</rotation>
+	</actor>
+	<actor>
+		<TYPE>ObstacleActor</TYPE>
+		<pos.x>1193.210571</pos.x>
+		<pos.y>-5823.447754</pos.y>
+		<grafix_id>13</grafix_id>
+		<scale>3.600000</scale>
+		<orientation>NormalOrientation</orientation>
+	</actor>
+	<actor>
+		<TYPE>FishActor</TYPE>
+		<pos.x>266.277191</pos.x>
+		<pos.y>-4681.136719</pos.y>
+		<to_move>-100.000000</to_move>
+	</actor>
+	<actor>
+		<TYPE>ObstacleActor</TYPE>
+		<pos.x>-495.944366</pos.x>
+		<pos.y>-5908.080566</pos.y>
+		<grafix_id>11</grafix_id>
+		<scale>2.200000</scale>
+		<orientation>NormalOrientation</orientation>
+	</actor>
+	<actor>
+		<TYPE>ObstacleActor</TYPE>
+		<pos.x>1168.529785</pos.x>
+		<pos.y>-6237.171387</pos.y>
+		<grafix_id>13</grafix_id>
+		<scale>3.600000</scale>
+		<orientation>NormalOrientation</orientation>
+	</actor>
+	<actor>
+		<TYPE>ObstacleActor</TYPE>
+		<pos.x>403.004456</pos.x>
+		<pos.y>-7170.133301</pos.y>
+		<grafix_id>3</grafix_id>
+		<scale>0.800000</scale>
+		<orientation>NormalOrientation</orientation>
+	</actor>
+	<actor>
+		<TYPE>ObstacleActor</TYPE>
+		<pos.x>381.735565</pos.x>
+		<pos.y>-4015.037354</pos.y>
+		<grafix_id>14</grafix_id>
+		<scale>0.200000</scale>
+		<orientation>NormalOrientation</orientation>
+	</actor>
+	<actor>
+		<TYPE>ObstacleActor</TYPE>
+		<pos.x>217.894531</pos.x>
+		<pos.y>-3887.656250</pos.y>
+		<grafix_id>1</grafix_id>
+		<scale>0.150000</scale>
+		<orientation>NormalOrientation</orientation>
+	</actor>
+	<actor>
+		<TYPE>ObstacleActor</TYPE>
+		<pos.x>276.466644</pos.x>
+		<pos.y>-4022.618408</pos.y>
+		<grafix_id>14</grafix_id>
+		<scale>0.200000</scale>
+		<orientation>FlipHorizontal</orientation>
+	</actor>
+	<actor>
+		<TYPE>ObstacleActor</TYPE>
+		<pos.x>315.215118</pos.x>
+		<pos.y>-4022.064941</pos.y>
+		<grafix_id>2</grafix_id>
+		<scale>0.200000</scale>
+		<orientation>NormalOrientation</orientation>
+	</actor>
+	<actor>
+		<TYPE>ObstacleActor</TYPE>
+		<pos.x>229.670929</pos.x>
+		<pos.y>-3853.248291</pos.y>
+		<grafix_id>10</grafix_id>
+		<scale>0.200000</scale>
+		<orientation>NormalOrientation</orientation>
+	</actor>
+	<actor>
+		<TYPE>DoorActor</TYPE>
+		<pos.x>-102.237846</pos.x>
+		<pos.y>-3962.342773</pos.y>
+		<signal_name>a</signal_name>
+		<scale>0.500000</scale>
+	</actor>
+	<actor>
+		<TYPE>BackgroundActor</TYPE>
+		<pos.x>418.494629</pos.x>
+		<pos.y>-4267.463867</pos.y>
+		<selectedTexture>kugelfisch3</selectedTexture>
+		<scale>1.000000</scale>
+		<rotation>0.000000</rotation>
+	</actor>
+	<actor>
+		<TYPE>SoundActor</TYPE>
+		<pos.x>1792.443970</pos.x>
+		<pos.y>513.732300</pos.y>
+		<selectedSound>mixDemo1</selectedSound>
+		<volume>1.000000</volume>
+		<loop>true</loop>
+	</actor>
+	<actor>
+		<TYPE>ObstacleActor</TYPE>
+		<pos.x>-1353.215088</pos.x>
+		<pos.y>-7080.097656</pos.y>
+		<grafix_id>11</grafix_id>
+		<scale>1.600000</scale>
+		<orientation>FlipHorizontal</orientation>
+	</actor>
+	<actor>
+		<TYPE>BackgroundActor</TYPE>
+		<pos.x>-118.956902</pos.x>
+		<pos.y>-8320.344727</pos.y>
+		<selectedTexture>landscape</selectedTexture>
+		<scale>1.800000</scale>
+		<rotation>0.000000</rotation>
+	</actor>
+	<actor>
+		<TYPE>FishActor</TYPE>
+		<pos.x>-974.955811</pos.x>
+		<pos.y>-7383.073730</pos.y>
+		<to_move>1000.000000</to_move>
+	</actor>
+	<actor>
+		<TYPE>BackgroundActor</TYPE>
+		<pos.x>-630.578247</pos.x>
+		<pos.y>-4274.100098</pos.y>
+		<selectedTexture>easteregg</selectedTexture>
+		<scale>1.800000</scale>
+		<rotation>90.000000</rotation>
+	</actor>
+	<actor>
+		<TYPE>ObstacleActor</TYPE>
+		<pos.x>-1204.276489</pos.x>
+		<pos.y>-3697.615723</pos.y>
+		<grafix_id>13</grafix_id>
+		<scale>3.600000</scale>
+		<orientation>FlipHorizontal</orientation>
+	</actor>
+	<actor>
+		<TYPE>BackgroundActor</TYPE>
+		<pos.x>559.555298</pos.x>
+		<pos.y>-6992.534180</pos.y>
+		<selectedTexture>kugelfisch3</selectedTexture>
+		<scale>1.600000</scale>
+		<rotation>0.000000</rotation>
+	</actor>
+	<actor>
+		<TYPE>BackgroundActor</TYPE>
+		<pos.x>-72.211670</pos.x>
+		<pos.y>-6072.405273</pos.y>
+		<selectedTexture>seahorse_import2</selectedTexture>
+		<scale>1.800000</scale>
+		<rotation>60.000000</rotation>
+	</actor>
+	<actor>
+		<TYPE>SoundActor</TYPE>
+		<pos.x>2122.647217</pos.x>
+		<pos.y>547.739014</pos.y>
+		<selectedSound>Ignacy</selectedSound>
+		<volume>1.000000</volume>
+		<loop>false</loop>
 	</actor>
 	<levelConfig>
 		<spawnBubble>true</spawnBubble>
-		<levelHeight>5</levelHeight>
+		<levelHeight>6</levelHeight>
 	</levelConfig>
 </state>
 

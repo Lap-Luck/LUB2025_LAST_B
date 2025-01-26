@@ -1,11 +1,19 @@
 <state>
 	<actor>
 		<TYPE>MenuButtonActor</TYPE>
-		<pos.x>323.192963</pos.x>
-		<pos.y>-589.495483</pos.y>
-		<scale>1.000000</scale>
-		<selectedTexture>unknown</selectedTexture>
-		<loadLevelOnClick>menu</loadLevelOnClick>
+		<pos.x>2.830705</pos.x>
+		<pos.y>-30.536480</pos.y>
+		<scale>1.200000</scale>
+		<selectedTexture>saatart</selectedTexture>
+		<loadLevelOnClick>M1</loadLevelOnClick>
+	</actor>
+	<actor>
+		<TYPE>SoundActor</TYPE>
+		<pos.x>925.650940</pos.x>
+		<pos.y>-311.920807</pos.y>
+		<selectedSound>Ignacy</selectedSound>
+		<volume>1.000000</volume>
+		<loop>false</loop>
 	</actor>
 	<levelConfig>
 		<spawnBubble>false</spawnBubble>

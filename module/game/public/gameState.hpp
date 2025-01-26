@@ -101,13 +101,13 @@ public:
     ObstacleContainer obstacles {};
     CutLineContainer cuts {};
     ActorContainer actors {};
-    std::string last_signal;
+    std::string last_signal {};
 
 
 
     struct SceneControl
     {
-        std::optional<std::string> changeLevel {};
+        std::string changeLevel {};
     } sceneControl;
 
     struct Temp

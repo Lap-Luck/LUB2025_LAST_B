@@ -17,7 +17,7 @@ public:
     {
         auto o=Obstacle(&state.assets.dooro,pos,scale*50.0);
         colision_id=o.unique_id;
-        SpawnnObstacle(o);
+        auto ob = SpawnnObstacle(o);
     }
 
     void onDraw() override

@@ -12,5 +12,8 @@ class GameConfig
         std::string ObstacleOnHitSound = "default";
         float ObstacleOnHitVolume = 1.0f;
 
+        std::string DoorSound = "default";
+        float DoorVolume = 1.0f;
+
         void onSerialize(ISerialize* inSerialize,class GameState& state);
 };

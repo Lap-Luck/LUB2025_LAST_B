@@ -101,8 +101,13 @@ public:
     void propertyString(std::string inName, std::string& inValue) override
     {
         rapidxml::xml_node<>* node = topNode->first_node(inName.c_str());
-        if(node) inValue = node->value();
-        else std::cout << "[WRN] Couldn't read "<<inName<<"\n";
+        if(!node) {std::cout << "[WRN] Couldn't read "<<inName<<"\n"; return;};
+
+        inValue = "";
+        for (int idx = 0; idx !=  node->value_size(); idx++)
+        {
+            inValue+= node->value()[idx];
+        }
     }
 
     void propertyBool(std::string inName, bool& inValue) override
@@ -126,8 +131,6 @@ public:
     }
     void propertyEnum(std::string inName, std::vector<std::string> options, std::string& selected) override
     {
-        rapidxml::xml_node<>* node = topNode->first_node(inName.c_str());
-        if(node) selected = node->value();
-        else std::cout << "[WRN] Couldn't read "<<inName<<"\n";
+        propertyString(inName,selected);
     }
 };
