@@ -101,6 +101,11 @@ void Game::onInitialize()
 
 void Game::onUpdate(float deltaTime)
 {
+    for (auto& it : state.actors.values)
+    {
+        it->onUpdate();
+    }
+
     camera.zoom = screenSize.x/1440.f;
     float my=max_bubble_y(state.bubbles.values);
     camera.target= Vec2f(0,my);

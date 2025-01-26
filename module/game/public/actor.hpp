@@ -26,6 +26,7 @@ public:
 
     virtual void onPlaced() = 0;
     virtual void onDraw() = 0;
+    virtual void onUpdate() {};
 
     virtual void onSerialize(ISerialize* inSerialize)
     {
