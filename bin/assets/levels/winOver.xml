@@ -11,7 +11,7 @@
 		<TYPE>SoundActor</TYPE>
 		<pos.x>925.650940</pos.x>
 		<pos.y>-311.920807</pos.y>
-		<selectedSound>Ignacy</selectedSound>
+		<selectedSound>Congratulations</selectedSound>
 		<volume>1.000000</volume>
 		<loop>false</loop>
 	</actor>
