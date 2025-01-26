@@ -4,6 +4,19 @@
 
 #include "assetsContainer.hpp"
 
+void loadFromFolder(std::map<std::string,Texture2D>& ref,std::string name)
+{
+    auto backgrounds = LoadDirectoryFiles((name+"\\").c_str());
+    for (int idx = 0; idx != backgrounds.count; idx++)
+    {
+        std::string path= backgrounds.paths[idx];
+        auto s = path.find_last_of('\\');
+        auto e = path.find_last_of('.');
+
+        ref[path.substr(s+1,e-s-1)] = LoadTexture(path.c_str());
+    }
+}
+
 void AssetsContainer::load()
 {
     unknownTexture = LoadTexture("unknown.png");
@@ -64,13 +77,7 @@ void AssetsContainer::load()
         i++;
     }
 
-    auto backgrounds = LoadDirectoryFiles("background\\");
-    for (int idx = 0; idx != backgrounds.count; idx++)
-    {
-        std::string path= backgrounds.paths[idx];
-        auto s = path.find_last_of('\\');
-        auto e = path.find_last_of('.');
+    loadFromFolder(backgroundSprite,"background");
+    loadFromFolder(buttonSprite,"button");
 
-        backgroundSprite[path.substr(s+1,e-s-1)] = LoadTexture(path.c_str());
-    }
 }

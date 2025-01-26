@@ -62,6 +62,7 @@ public:
     ObstacleMask fish2R{};
 
     std::map<std::string,Texture2D> backgroundSprite {};
+    std::map<std::string,Texture2D> buttonSprite {};
 
     std::vector<Texture2DPlus> obstaclesTexturesPlus{};
     std::vector<Texture2DPlus> obstaclesTexturesPlusR{};

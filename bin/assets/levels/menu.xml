@@ -1,9 +1,9 @@
 <state>
 	<actor>
 		<TYPE>MenuButtonActor</TYPE>
-		<pos.x>-338.906982</pos.x>
-		<pos.y>-502.947388</pos.y>
-		<selectedTexture>unknown</selectedTexture>
+		<pos.x>-7.982013</pos.x>
+		<pos.y>-186.327515</pos.y>
+		<selectedTexture>start</selectedTexture>
 		<loadLevelOnClick>default</loadLevelOnClick>
 		<scale>1.000000</scale>
 	</actor>

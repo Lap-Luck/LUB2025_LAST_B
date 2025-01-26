@@ -29,7 +29,7 @@ public:
         Actor::onSerialize(inSerialize);
 
         std::vector<std::string> keys;
-        for (auto& it : state.assets.backgroundSprite)
+        for (auto& it : state.assets.buttonSprite)
         {
             keys.push_back(it.first);
         }
@@ -42,7 +42,7 @@ public:
     {
         if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
         {
-            auto& texture = state.assets.backgroundSprite[selectedTexture];
+            auto& texture = state.assets.buttonSprite[selectedTexture];
             float offset = texture.width*scale/2.f;
             if(
                 state.temp.mouseWorldPos.x > pos.x - offset &&
@@ -58,7 +58,7 @@ public:
 
     void onDraw() override
     {
-        auto& texture = state.assets.backgroundSprite[selectedTexture];
+        auto& texture = state.assets.buttonSprite[selectedTexture];
         DrawTexturePro(
             texture,
             {0,0,(float)texture.width,(float)texture.height},
