@@ -160,20 +160,31 @@ void Game::onUpdate(float deltaTime)
             }
         }
     }
-
-    cameraHeigth=fmin(max_bubble_y(state.bubbles.values),cameraHeigth-0.3);
+    float CAMERA_VEL=1.0f;
+    cameraHeigth=fmin(max_bubble_y(state.bubbles.values),cameraHeigth-CAMERA_VEL);
 
 
     state.obstacles.deletePending();
     state.bubbles.deletePending();
     state.actors.deletePending();
     state.cuts.deletePending();
+    if (IsGameOver()) {
+
+    }
 }
 
 bool Game::IsGameOver() {
+    bool game_over=true;
     for (int b_id:range(state.bubbles.values.size())) {
-
+        float h=state.bubbles.values[b_id].pos.y;
+        if (h<cameraHeigth+camera.offset.y*2) {
+            game_over=false;
+        }
     }
+    if (game_over) {
+        printf("saaa");
+    }
+    return game_over;
 }
 
 void Game::onDraw()
