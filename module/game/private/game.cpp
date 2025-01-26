@@ -255,6 +255,4 @@ void Game::onDraw()
 
 
     EndMode2D();
-
-    DrawFPS(10, 10);
 }

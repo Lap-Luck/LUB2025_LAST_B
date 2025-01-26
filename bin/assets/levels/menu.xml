@@ -5,13 +5,15 @@
 		<pos.y>-186.327515</pos.y>
 		<scale>1.000000</scale>
 		<selectedTexture>start</selectedTexture>
-		<loadLevelOnClick>default</loadLevelOnClick>
+		<loadLevelOnClick>M1</loadLevelOnClick>
 	</actor>
 	<actor>
 		<TYPE>SoundActor</TYPE>
 		<pos.x>632.498413</pos.x>
 		<pos.y>-107.388275</pos.y>
 		<selectedSound>mixDemo1</selectedSound>
+		<volume>1.000000</volume>
+		<loop>false</loop>
 	</actor>
 	<levelConfig>
 		<spawnBubble>false</spawnBubble>
