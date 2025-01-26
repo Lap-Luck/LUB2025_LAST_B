@@ -43,7 +43,7 @@ public:
     void onSerialize(ISerialize* inSerialize) override
     {
         Actor::onSerialize(inSerialize);
-        inSerialize->propertyFloat("scale",scale);
+        //inSerialize->propertyFloat("scale",scale);
     }
 
 };
