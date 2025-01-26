@@ -9,6 +9,13 @@ std::string getClassName() override {return ClassName;}
 
 class GameState;
 
+class IActorModifyParam
+{
+public:
+    virtual void requestChangeScale(float inChange) {};
+    virtual void requestChangeRotation(float inChange) {};
+};
+
 class Actor
 {
 public:

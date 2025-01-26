@@ -1,4 +1,6 @@
 #include <cassert>
+#include <iostream>
+#include <ostream>
 
 #include "assetsContainer.hpp"
 
@@ -9,10 +11,6 @@ void AssetsContainer::load()
     szczupakf = LoadTexture("szczupak_final.png");
     spikeMask= LoadObstacleMask(LoadImage48("col_long.png"));
 
-    backgroundSprite["kugelfisch3"] = LoadTexture("background/kugelfisch3.png");
-    backgroundSprite["seahorse_import2"] = LoadTexture("background/seahorse_import2.png");
-    backgroundSprite["SeaStar_2"] = LoadTexture("background/SeaStar_2.png");
-    backgroundSprite["Medusa_Resized_2"] = LoadTexture("background/Medusa_Resized_2.png");
     //obstaclesTexturesPlus.push_back(Load2DPlus("buton_off_full.png","buton_off_full_mask.png"));
     //obstaclesTexturesPlus.push_back(Load2DPlus("szczupak_final.png","szczupak_final_mask.png"));
     //obstaclesTexturesPlus.push_back(Load2DPlus("stranght3.png","stranght3_mask.png"));
@@ -42,12 +40,13 @@ void AssetsContainer::load()
         i++;
     }
 
+    auto backgrounds = LoadDirectoryFiles("background\\");
+    for (int idx = 0; idx != backgrounds.count; idx++)
+    {
+        std::string path= backgrounds.paths[idx];
+        auto s = path.find_last_of('\\');
+        auto e = path.find_last_of('.');
 
-    backgroundSprite["kugelfisch3"] = LoadTexture("background/kugelfisch3.png");
-    backgroundSprite["seahorse_import2"] = LoadTexture("background/seahorse_import2.png");
-    backgroundSprite["SeaStar_2"] = LoadTexture("background/SeaStar_2.png");
-    backgroundSprite["Medusa_Resized_2"] = LoadTexture("background/Medusa_Resized_2.png");
-    backgroundSprite["hook"] = LoadTexture("background/hook.png");
-    backgroundSprite["darkBlue"] = LoadTexture("background/Zwykle_Tlo_darkBlue1.png");
-    backgroundSprite["unknown"] = LoadTexture("unknown.png");
+        backgroundSprite[path.substr(s+1,e-s-1)] = LoadTexture(path.c_str());
+    }
 }

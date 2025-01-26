@@ -1,5 +1,6 @@
 #pragma once
 
+#include <actorSerializeHelpers.hpp>
 #include <cmath>
 #include <iostream>
 
@@ -41,6 +42,8 @@ class EditorWindow : public Window
             mousePos.y = (GetMousePosition().y - renderer.lastRenderedScreenRect.y);
             Vector2 mouseWorldPos = GetScreenToWorld2D(Vector2(mousePos), camera);
 
+            bool capturedInput {false};
+            float wheel = GetMouseWheelMove();
             if(mousePos.x > 0 && mousePos.y > 0 && mousePos.x < renderer.lastRenderedScreenRect.width && mousePos.y < renderer.lastRenderedScreenRect.height)
             {
                 if (IsMouseButtonDown(MOUSE_BUTTON_RIGHT))
@@ -64,17 +67,20 @@ class EditorWindow : public Window
                         edState.toPlace->pos = mouseWorldPos;
                         state.actors.values.push_back(std::move(edState.toPlace));
                         edState.selectedActor =state.actors.values[state.actors.values.size()-1];
+
+                        capturedInput = true;
                     }
-                    for (auto& it : state.actors.values)
+                }
+                else
+                {
+                    if (IsKeyPressed(KEY_D) && !edState.selectedActor.expired())
                     {
-                        Vec2f inWorld = it->pos;
-                        std::cout << inWorld.x << " " << inWorld.y << " | " << mouseWorldPos.y << " " << mouseWorldPos.y << std::endl;
-                        if (mouseWorldPos.x > inWorld.x && mouseWorldPos.x < inWorld.x+20
-                            &&  mouseWorldPos.y > inWorld.y && mouseWorldPos.y < inWorld.y+20)
-                        {
-                            edState.draggingActor = it;
-                            edState.selectedActor = it;
-                        }
+                        auto actor = duplicateActor(edState.selectedActor.lock().get(),state);
+                        actor->pos = mouseWorldPos;
+
+                        state.actors.values.push_back(std::move(actor));
+                        edState.selectedActor = state.actors.values[state.actors.values.size()-1];
+                        capturedInput = true;
                     }
                 }
 
@@ -82,24 +88,67 @@ class EditorWindow : public Window
                 {
                     edState.draggingActor = {};
                 }
-                float wheel = GetMouseWheelMove();
 
-                if (wheel != 0)
+                if (!capturedInput)
                 {
-                    camera.offset = Vector2(mousePos);
-                    camera.target = mouseWorldPos;
-                    float scaleFactor = 1.0f + (0.25f*fabsf(wheel));
-                    if (wheel < 0) scaleFactor = 1.0f/scaleFactor;
-                    camera.zoom = Clamp(camera.zoom*scaleFactor, 0.125f, 64.0f);
+                    for (auto& it : state.actors.values)
+                    {
+                        Vec2f inWorld = it->pos;
+
+                        Vec2f dist = inWorld - Vec2f(mouseWorldPos);
+                        float distance = sqrt( (dist.x*dist.x) + (dist.y*dist.y) );
+
+                        std::cout << inWorld.x << " " << inWorld.y << " | " << mouseWorldPos.y << " " << mouseWorldPos.y << std::endl;
+                        if ( distance < 20/camera.zoom)
+                        {
+                            if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+                            {
+                                edState.draggingActor = it;
+                                edState.selectedActor = it;
+                            }
+
+                            if (IsKeyDown(KEY_R))
+                            {
+                                if (wheel != 0)
+                                {
+                                    if(auto casted = std::dynamic_pointer_cast<IActorModifyParam>(it))
+                                    {
+                                        casted->requestChangeRotation(wheel*15);
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                if (wheel != 0)
+                                {
+                                    if(auto casted = std::dynamic_pointer_cast<IActorModifyParam>(it))
+                                    {
+                                        casted->requestChangeScale(wheel/5.0);
+                                    }
+                                }
+                            }
+
+                            capturedInput = true;
+                        }
+                    }
                 }
-                camera.zoom += ((float)GetMouseWheelMove()*0.05f);
+
+                if (!capturedInput)
+                {
+                    if (wheel != 0)
+                    {
+                        camera.offset = Vector2(mousePos);
+                        camera.target = mouseWorldPos;
+                        float scaleFactor = 1.0f + (0.25f*fabsf(wheel));
+                        if (wheel < 0) scaleFactor = 1.0f/scaleFactor;
+                        camera.zoom = Clamp(camera.zoom*scaleFactor, 0.125f, 64.0f);
+                    }
+                }
             }
 
             renderer.drawContent([&]()
             {
                 BeginMode2D(camera);
-
-                DrawCircle(0,0,20,BLUE);
 
                 for (auto& it : state.actors.values)
                 {
@@ -107,11 +156,14 @@ class EditorWindow : public Window
                 }
                 for (auto& it : state.actors.values)
                 {
-                    DrawRectangle(it->pos.x,it->pos.y,20,20,RED);
+                    DrawCircle(it->pos.x,it->pos.y,20/camera.zoom,PINK);
                 }
 
                 DrawRectangleLines(-1440/2,-2000,1440,2000,BLACK);
+
+                DrawCircle(0,0,20/camera.zoom,BLUE);
                 EndMode2D();
+
             });
         }
 

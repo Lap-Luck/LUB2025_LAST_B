@@ -5,7 +5,7 @@
 
 
 
-class BackgroundActor : public Actor
+class BackgroundActor : public Actor, public IActorModifyParam
 {
 public:
     ACTOR_BODY(BackgroundActor);
@@ -42,6 +42,22 @@ public:
     void onDraw() override
     {
         auto& texture = state.assets.backgroundSprite[selectedTexture];
-        DrawTextureEx(texture,pos,rotation,scale,WHITE);
+        DrawTexturePro(
+            texture,
+            {0,0,(float)texture.width,(float)texture.height},
+            {pos.x,pos.y,texture.width*scale,texture.height*scale},
+            Vector2{texture.width*scale/2.f,texture.height*scale/2.f},
+            rotation,
+            WHITE
+        );
+    }
+
+    void requestChangeScale(float inChange) override
+    {
+        scale += inChange;
+    }
+    void requestChangeRotation(float inChange) override
+    {
+        rotation += inChange;
     }
 };

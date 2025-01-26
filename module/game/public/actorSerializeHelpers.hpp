@@ -59,3 +59,25 @@ inline void loadFromFile(std::string name, GameState& state)
 
     root.clear();
 }
+
+inline std::unique_ptr<Actor> duplicateActor(Actor* actor, GameState& state)
+{
+    rapidxml::xml_document<> root {};
+    rapidxml::xml_node<> *node = root.allocate_node(rapidxml::node_element, "state", nullptr );
+    root.append_node(node);
+
+    SerializeWrite serializer{&root,node};
+    actor->onSerialize(&serializer);
+
+    auto fac = state.actorFactory.getByClassName(actor->getClassName());
+    if (!fac) return {};
+
+    std::unique_ptr<Actor> out = fac->construct(state);
+
+    SerializeRead reader{&root,node};
+    out->onSerialize(&reader);
+    root.clear();
+
+    return out;
+
+}

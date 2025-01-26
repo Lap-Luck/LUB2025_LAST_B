@@ -1,6 +1,6 @@
 #pragma once
 
-class ObstacleActor : public Actor
+class ObstacleActor : public Actor, public IActorModifyParam
 {
 public:
     ACTOR_BODY(ObstacleActor);
@@ -21,15 +21,23 @@ public:
     void onPlaced() override
     {
         ObstacleMask& om=getData().masks[0];
-        float sx=((float)getData().obstaclePixelsSizeX)*1.0f/8.0f*scale;
-        SpawnnObstacle(Obstacle(&om,pos,sx));
+        float sx=((float)getData().obstaclePixelsSizeX)*1.0f*scale;
+        auto& texture = getData().img;
+        SpawnnObstacle(Obstacle(&om,Vector2(pos-Vec2f{texture.width*scale/2.f,texture.height*scale/2.f}),sx));
 
     }
 
     void onDraw() override {
         auto& texture = getData().img;
 
-        DrawTextureEx(texture, {pos.x,pos.y}, 0.0f,1.0f/8.0f*scale,WHITE);
+        DrawTexturePro(
+            texture,
+            {0,0,(float)texture.width,(float)texture.height},
+            {pos.x,pos.y,texture.width*scale,texture.height*scale},
+            Vector2{texture.width*scale/2.f,texture.height*scale/2.f},
+            0,
+            WHITE
+        );
     }
 
      void onSerialize(ISerialize* inSerialize) override
@@ -50,4 +58,8 @@ public:
         inSerialize->propertyFloat("scale",scale);
     }
 
+    void requestChangeScale(float inChange) override
+    {
+        scale += inChange;
+    }
 };
