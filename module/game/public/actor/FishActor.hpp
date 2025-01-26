@@ -14,6 +14,8 @@ public:
 
     Obstacle::ObstacleId id_body;
     Obstacle::ObstacleId id_kill;
+    Obstacle::ObstacleId id_bodyR;
+    Obstacle::ObstacleId id_killR;
 
     Vec2f A;
     Vec2f B;
@@ -39,6 +41,14 @@ public:
         id_body=body.unique_id;
         Obstacle kill = Obstacle(&state.assets.fish2,{pos.x,pos.y},10.0f);
         id_kill=kill.unique_id;
+        Obstacle bodyR = Obstacle(&state.assets.fish1R,{pos.x,pos.y},10.0f);
+        id_bodyR=bodyR.unique_id;
+        Obstacle killR = Obstacle(&state.assets.fish2R,{pos.x,pos.y},10.0f);
+        id_killR=killR.unique_id;
+        killR.onHit = [](Bubble* bubble)
+        {
+            bubble->flags.pendingDestroy = true;
+        };
         kill.onHit = [](Bubble* bubble)
         {
             bubble->flags.pendingDestroy = true;
@@ -46,6 +56,8 @@ public:
 
         state.obstacles.values.push_back(std::move(body));
         state.obstacles.values.push_back(std::move(kill));
+        state.obstacles.values.push_back(std::move(bodyR));
+        state.obstacles.values.push_back(std::move(killR));
         A=pos;
         B=A+Vec2f(to_move,0.0f);
     }
@@ -55,23 +67,41 @@ public:
         }
     }
     void onUpdate() override {
+
+        Vec2f move;
+
         in_game=true;
         if (dir) {
-            pos=pos+(B-A).normalized()*1.6f;
+            move=(B-A).normalized()*1.6f;
             if ((B-pos).length()<10.0f) {
                 dir=!dir;
                 UpdateCol();
             }
         }
         else {
-            pos=pos+(A-B).normalized()*1.6f;
+            move=(A-B).normalized()*1.6f;
             if ((A-pos).length()<10.0f) {
                 dir=!dir;
                 UpdateCol();
             }
         }
+        pos=pos+move;
+        if (move.x>0) {
+            state.obstacles.getById(id_body)->active=false;
+            state.obstacles.getById(id_kill)->active=false;
+            state.obstacles.getById(id_bodyR)->active=true;
+            state.obstacles.getById(id_killR)->active=true;
+        }
+        else {
+            state.obstacles.getById(id_body)->active=true;
+            state.obstacles.getById(id_kill)->active=true;
+            state.obstacles.getById(id_bodyR)->active=false;
+            state.obstacles.getById(id_killR)->active=false;
+        }
         state.obstacles.getById(id_body)->pos=pos;
         state.obstacles.getById(id_kill)->pos=pos;
+        state.obstacles.getById(id_bodyR)->pos=pos;
+        state.obstacles.getById(id_killR)->pos=pos;
     }
 
     void onDraw() override {

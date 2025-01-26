@@ -246,6 +246,8 @@ public:
         bool pendingDestroy {false};
     } flags;
 
+    bool active=true;
+
     Vector2 pos {};
     float scale {1};
     bool debug_draw = true;
@@ -269,26 +271,29 @@ public:
 
     void draw()
     {
-        if (debug_draw)
-        {
-            for (int y : range(mask->size.y))
+        if (active) {
+            if (debug_draw)
             {
-                for (int x : range(mask->size.x))
+                for (int y : range(mask->size.y))
                 {
-                    if (mask->mask[x][y] == 1)
+                    for (int x : range(mask->size.x))
                     {
-                        DrawRectangleLines(pos.x + x * scale, pos.y + y * scale, scale, scale,
-                                           Color((x * 64) % 255, 255, 0, 255));
-                        //DrawRectangleLines(pos.x+x*20.0,pos.y+y*20.0,20,20,Color((i%7)*10,i,0,255));
+                        if (mask->mask[x][y] == 1)
+                        {
+                            DrawRectangleLines(pos.x + x * scale, pos.y + y * scale, scale, scale,
+                                               Color((x * 64) % 255, 255, 0, 255));
+                            //DrawRectangleLines(pos.x+x*20.0,pos.y+y*20.0,20,20,Color((i%7)*10,i,0,255));
+                        }
                     }
                 }
-            }
-            for (int s_id : range(mask->segments.size()))
-            {
-                ObSegment s = mask->segments[s_id];
-                DrawLine(pos.x + ((float)s.ax + 0.5) * scale, pos.y + ((float)s.ay + 0.5) * scale,
-                         pos.x + ((float)s.bx + 0.5) * scale, pos.y + ((float)s.by + 0.5) * scale,RED);
+                for (int s_id : range(mask->segments.size()))
+                {
+                    ObSegment s = mask->segments[s_id];
+                    DrawLine(pos.x + ((float)s.ax + 0.5) * scale, pos.y + ((float)s.ay + 0.5) * scale,
+                             pos.x + ((float)s.bx + 0.5) * scale, pos.y + ((float)s.by + 0.5) * scale,RED);
+                }
             }
         }
+
     }
 };

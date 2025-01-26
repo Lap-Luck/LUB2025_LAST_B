@@ -159,7 +159,7 @@ public:
             //if (box_box_colide(o.box(),pos,r)) {
             // o.s=false;
             //}
-            {
+            if (o.active){
                 for (int s_id:range(o.mask->segments.size())) {
                     ObSegment s=o.mask->segments[s_id];
                     Vector2 A=o.pos+Vec2f{((float)s.ax+0.5f)*o.scale,((float)s.ay+0.5f)*o.scale};
