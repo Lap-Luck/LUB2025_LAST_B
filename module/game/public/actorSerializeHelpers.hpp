@@ -1,5 +1,7 @@
 #pragma once
 
+#include <gameState.hpp>
+
 #include "thirdParty/rapidXml/rapidxml.hpp"
 #include <thirdParty/rapidXml/rapidxml_print.hpp>
 #include <thirdParty/rapidXml/rapidxml_utils.hpp>

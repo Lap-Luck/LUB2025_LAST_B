@@ -91,5 +91,4 @@ protected:
     std::string fileName {"default"};
     GameState& state;
     EditorState& edState;
-
 };

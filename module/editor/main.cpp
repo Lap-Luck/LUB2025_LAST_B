@@ -1,6 +1,7 @@
 #include <fstream>
 #include <raylib.h>
 
+#include "configWindow.hpp"
 #include "windowManager.hpp"
 #include "gameState.hpp"
 #include "editorWindow.hpp"
@@ -23,6 +24,7 @@ int main(void)
     WindowManager::get()->queueAddWindowView(std::make_unique<EditorWindow>(state,edState));
     //WindowManager::get()->queueAddWindowView(std::make_unique<GameWindow>(game));
     WindowManager::get()->queueAddWindowView(std::make_unique<SelectionWindow>(state,edState));
+    WindowManager::get()->queueAddWindowView(std::make_unique<ConfigWindow>(state,edState));
 
     WindowManager::get()->properties.showImGuiShowcase    = false;
     WindowManager::get()->properties.showImGuiDebugInfo   = false;

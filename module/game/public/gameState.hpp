@@ -9,6 +9,7 @@
 #include "raylib.h"
 
 #include "actor.hpp"
+#include "gameConfig.hpp"
 
 class ObstacleContainer
 {
@@ -88,9 +89,10 @@ public:
 class GameState
 {
 public:
+    GameConfig config;
+
     AssetsContainer assets;
     ActorFactory actorFactory {};
-    PhysicsConfig physicsConfig {};
 
     BubblesContainer bubbles {};
     ObstacleContainer obstacles {};

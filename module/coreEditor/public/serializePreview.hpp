@@ -21,6 +21,11 @@ public:
         inValue = buffor;
     }
 
+    void propertyBool(std::string inName, bool& inValue) override
+    {
+        ImGui::Checkbox(inName.c_str(),&inValue);
+    }
+
     void propertyFloat(std::string inName, float& inValue) override
     {
         float temp = inValue;

@@ -185,19 +185,22 @@ void Game::onDraw()
         it->onDraw();
     }
 
-    for (int b_id:range(state.bubbles.values.size())){
-        Bubble& b=state.bubbles.values[b_id];
-        b.draw();
-    }
+    if (state.config.debugDraw)
+    {
+        for (int b_id:range(state.bubbles.values.size())){
+            Bubble& b=state.bubbles.values[b_id];
+            b.draw();
+        }
 
-    for (int o_id:range(state.obstacles.values.size())){
-        Obstacle& o=state.obstacles.values[o_id];
-        o.draw();
-    }
+        for (int o_id:range(state.obstacles.values.size())){
+            Obstacle& o=state.obstacles.values[o_id];
+            o.draw();
+        }
 
-    for (int c_id:range(state.cuts.values.size())){
-        CutLine& cl=state.cuts.values[c_id];
-        cl.draw();
+        for (int c_id:range(state.cuts.values.size())){
+            CutLine& cl=state.cuts.values[c_id];
+            cl.draw();
+        }
     }
 
 

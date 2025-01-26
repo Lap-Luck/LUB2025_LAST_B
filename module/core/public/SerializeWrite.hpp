@@ -53,6 +53,13 @@ public:
         rapidxml::xml_node<>* node = root->allocate_node(rapidxml::node_element, name, value,inName.size(),valueStr.size());
         topNode->append_node(node);
     }
+
+    void propertyBool(std::string inName, bool& inValue) override
+    {
+        std::string valueStr = inValue ? "true" : "false";
+        propertyString(inName,valueStr);
+    }
+
     void propertyEnum(std::string inName, std::vector<std::string> options, std::string& selected) override
     {
         std::string valueStr = selected;
@@ -96,6 +103,13 @@ public:
         rapidxml::xml_node<>* node = topNode->first_node(inName.c_str());
         if(node) inValue = node->value();
         else std::cout << "[WRN] Couldn't read "<<inName<<"\n";
+    }
+
+    void propertyBool(std::string inName, bool& inValue) override
+    {
+        std::string valueStr = inValue ? "true" : "false";
+        propertyString(inName,valueStr);
+        inValue = valueStr == "true" ? true : false;
     }
 
     void propertyFloat(std::string inName, float& inValue) override
