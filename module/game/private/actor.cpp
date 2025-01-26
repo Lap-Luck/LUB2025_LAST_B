@@ -7,10 +7,11 @@
         auto cutId=child_cutlines[cid];
         state.cuts.getById(cutId)->flags.pendingDestroy = true;
     }
-    for (int oid:range(child_obstacles.size())) {
-        auto obstalceId=child_obstacles[oid];
-        state.obstacles.getById(obstalceId)->flags.pendingDestroy = true;
+    for (int obstalceId : child_obstacles) {
+        if (state.obstacles.getById(obstalceId))
+            state.obstacles.getById(obstalceId)->flags.pendingDestroy = true;
     }
+    child_obstacles.clear();
 };
 
 

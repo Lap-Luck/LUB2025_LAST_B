@@ -97,8 +97,6 @@ class EditorWindow : public Window
 
                         Vec2f dist = inWorld - Vec2f(mouseWorldPos);
                         float distance = sqrt( (dist.x*dist.x) + (dist.y*dist.y) );
-
-                        std::cout << inWorld.x << " " << inWorld.y << " | " << mouseWorldPos.y << " " << mouseWorldPos.y << std::endl;
                         if ( distance < 20/camera.zoom)
                         {
                             if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))

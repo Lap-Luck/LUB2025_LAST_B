@@ -9,7 +9,7 @@ public:
     ~ButtonActor(){}
 
     std::string signal_name="a";
-
+    bool active=true;
     void onPlaced() override
     {
         Obstacle obstacle = Obstacle(&state.assets.spikeMask,pos,3.0f);
@@ -17,7 +17,11 @@ public:
         obstacle.onHit = [this](Bubble* bubble)
         {
             //TraceLog(LOG_INFO,"DOOR OPEN");
-            state.last_signal=signal_name;
+            if (active) {
+                state.last_signal=signal_name;
+                active=false;
+            }
+
         };
 
 
