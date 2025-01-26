@@ -20,7 +20,7 @@
 		<pos.x>-136.443710</pos.x>
 		<pos.y>-2827.924805</pos.y>
 		<selectedTexture>Tlo_darkBlue1</selectedTexture>
-		<scale>1.200000</scale>
+		<scale>2.600000</scale>
 		<rotation>0.000000</rotation>
 	</actor>
 	<actor>
@@ -83,7 +83,7 @@
 		<TYPE>BackgroundActor</TYPE>
 		<pos.x>-467.568787</pos.x>
 		<pos.y>-1196.105103</pos.y>
-		<selectedTexture>seahorse_import2˜ò&gt;V]</selectedTexture>
+		<selectedTexture>seahorse_import2ï¿½ï¿½&gt;V]</selectedTexture>
 		<scale>1.600000</scale>
 		<rotation>-15.000000</rotation>
 	</actor>
@@ -222,7 +222,7 @@
 		<pos.x>-155.352020</pos.x>
 		<pos.y>-3019.549561</pos.y>
 		<grafix_id>7</grafix_id>
-		<scale>1.600000</scale>
+		<scale>1.200000</scale>
 		<orientation>NormalOrientation</orientation>
 	</actor>
 	<actor>
@@ -235,8 +235,8 @@
 	</actor>
 	<actor>
 		<TYPE>ObstacleActor</TYPE>
-		<pos.x>-4.488298</pos.x>
-		<pos.y>-2819.947021</pos.y>
+		<pos.x>-6.166017</pos.x>
+		<pos.y>-2845.113037</pos.y>
 		<grafix_id>9</grafix_id>
 		<scale>0.400000</scale>
 		<orientation>NormalOrientation</orientation>
@@ -285,14 +285,6 @@
 		<TYPE>ObstacleActor</TYPE>
 		<pos.x>306.379578</pos.x>
 		<pos.y>-3066.197510</pos.y>
-		<grafix_id>3</grafix_id>
-		<scale>0.500000</scale>
-		<orientation>FlipHorizontal</orientation>
-	</actor>
-	<actor>
-		<TYPE>ObstacleActor</TYPE>
-		<pos.x>54.393379</pos.x>
-		<pos.y>-3196.124023</pos.y>
 		<grafix_id>3</grafix_id>
 		<scale>0.500000</scale>
 		<orientation>FlipHorizontal</orientation>
