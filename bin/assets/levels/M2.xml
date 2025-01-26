@@ -32,22 +32,6 @@
 		<rotation>0.000000</rotation>
 	</actor>
 	<actor>
-		<TYPE>BackgroundActor</TYPE>
-		<pos.x>-6.398438</pos.x>
-		<pos.y>-4308.831543</pos.y>
-		<selectedTexture>Tlo_darkBlue1</selectedTexture>
-		<scale>1.600000</scale>
-		<rotation>0.000000</rotation>
-	</actor>
-	<actor>
-		<TYPE>BackgroundActor</TYPE>
-		<pos.x>-14.398438</pos.x>
-		<pos.y>-5124.831543</pos.y>
-		<selectedTexture>Tlo_darkBlue1</selectedTexture>
-		<scale>1.000000</scale>
-		<rotation>0.000000</rotation>
-	</actor>
-	<actor>
 		<TYPE>ObstacleActor</TYPE>
 		<pos.x>-1204.306885</pos.x>
 		<pos.y>-973.283691</pos.y>
@@ -136,14 +120,6 @@
 		<rotation>435.000000</rotation>
 	</actor>
 	<actor>
-		<TYPE>BackgroundActor</TYPE>
-		<pos.x>-623.131348</pos.x>
-		<pos.y>-3979.564453</pos.y>
-		<selectedTexture>easteregg</selectedTexture>
-		<scale>1.400000</scale>
-		<rotation>90.000000</rotation>
-	</actor>
-	<actor>
 		<TYPE>ObstacleActor</TYPE>
 		<pos.x>-1196.412109</pos.x>
 		<pos.y>-3697.615723</pos.y>
@@ -154,7 +130,7 @@
 	<actor>
 		<TYPE>ObstacleActor</TYPE>
 		<pos.x>1258.152954</pos.x>
-		<pos.y>-4158.840332</pos.y>
+		<pos.y>-4153.720215</pos.y>
 		<grafix_id>13</grafix_id>
 		<scale>3.600000</scale>
 		<orientation>NormalOrientation</orientation>
@@ -166,15 +142,9 @@
 		<to_move>-1050.000000</to_move>
 	</actor>
 	<actor>
-		<TYPE>ButtonActor</TYPE>
-		<pos.x>-500.274292</pos.x>
-		<pos.y>-4736.384277</pos.y>
-		<signal_name>a</signal_name>
-	</actor>
-	<actor>
 		<TYPE>BackgroundActor</TYPE>
-		<pos.x>31.603271</pos.x>
-		<pos.y>-6235.326660</pos.y>
+		<pos.x>11.123268</pos.x>
+		<pos.y>-5895.357910</pos.y>
 		<selectedTexture>Tlo_darkBlue1</selectedTexture>
 		<scale>1.000000</scale>
 		<rotation>0.000000</rotation>
@@ -316,6 +286,96 @@
 		<grafix_id>3</grafix_id>
 		<scale>0.300000</scale>
 		<orientation>FlipHorizontal</orientation>
+	</actor>
+	<actor>
+		<TYPE>ObstacleActor</TYPE>
+		<pos.x>-103.935509</pos.x>
+		<pos.y>-4329.748047</pos.y>
+		<grafix_id>10</grafix_id>
+		<scale>1.000000</scale>
+		<orientation>NormalOrientation</orientation>
+	</actor>
+	<actor>
+		<TYPE>ObstacleActor</TYPE>
+		<pos.x>-347.205170</pos.x>
+		<pos.y>-4681.019043</pos.y>
+		<grafix_id>9</grafix_id>
+		<scale>1.000000</scale>
+		<orientation>NormalOrientation</orientation>
+	</actor>
+	<actor>
+		<TYPE>ObstacleActor</TYPE>
+		<pos.x>311.825073</pos.x>
+		<pos.y>-4312.443848</pos.y>
+		<grafix_id>7</grafix_id>
+		<scale>1.400000</scale>
+		<orientation>FlipHorizontal</orientation>
+	</actor>
+	<actor>
+		<TYPE>ObstacleActor</TYPE>
+		<pos.x>160.305786</pos.x>
+		<pos.y>-4755.990723</pos.y>
+		<grafix_id>7</grafix_id>
+		<scale>0.500000</scale>
+		<orientation>FlipHorizontal</orientation>
+	</actor>
+	<actor>
+		<TYPE>ObstacleActor</TYPE>
+		<pos.x>367.399445</pos.x>
+		<pos.y>-4677.348633</pos.y>
+		<grafix_id>14</grafix_id>
+		<scale>0.500000</scale>
+		<orientation>NormalOrientation</orientation>
+	</actor>
+	<actor>
+		<TYPE>SpikeActor</TYPE>
+		<pos.x>366.144104</pos.x>
+		<pos.y>-3984.782715</pos.y>
+	</actor>
+	<actor>
+		<TYPE>ObstacleActor</TYPE>
+		<pos.x>-668.099060</pos.x>
+		<pos.y>-4526.102051</pos.y>
+		<grafix_id>12</grafix_id>
+		<scale>0.600000</scale>
+		<orientation>NormalOrientation</orientation>
+	</actor>
+	<actor>
+		<TYPE>ObstacleActor</TYPE>
+		<pos.x>2070.610352</pos.x>
+		<pos.y>-4622.520508</pos.y>
+		<grafix_id>0</grafix_id>
+		<scale>1.000000</scale>
+		<orientation>NormalOrientation</orientation>
+	</actor>
+	<actor>
+		<TYPE>DoorActor</TYPE>
+		<pos.x>43.090153</pos.x>
+		<pos.y>-5289.352051</pos.y>
+		<signal_name>anb</signal_name>
+		<scale>1.000000</scale>
+	</actor>
+	<actor>
+		<TYPE>ButtonActor</TYPE>
+		<pos.x>-626.196350</pos.x>
+		<pos.y>-4400.519043</pos.y>
+		<signal_name>anb</signal_name>
+	</actor>
+	<actor>
+		<TYPE>ObstacleActor</TYPE>
+		<pos.x>1265.579590</pos.x>
+		<pos.y>-5974.598145</pos.y>
+		<grafix_id>13</grafix_id>
+		<scale>3.600000</scale>
+		<orientation>NormalOrientation</orientation>
+	</actor>
+	<actor>
+		<TYPE>ObstacleActor</TYPE>
+		<pos.x>-1227.860718</pos.x>
+		<pos.y>-6153.797363</pos.y>
+		<grafix_id>13</grafix_id>
+		<scale>3.600000</scale>
+		<orientation>NormalOrientation</orientation>
 	</actor>
 	<levelConfig>
 		<spawnBubble>true</spawnBubble>
