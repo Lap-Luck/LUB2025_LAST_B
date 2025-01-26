@@ -8,26 +8,35 @@ public:
     DoorActor(GameState& inState,Vec2f inPos) : Actor(inState,inPos) {}
     ~DoorActor(){}
 
+    Obstacle::ObstacleId colision_id;
     std::string signal="a";
     float scale=1.0f;
+    bool active=true;
 
     void onPlaced() override
     {
-        SpawnnObstacle(Obstacle(&state.assets.dooro,pos,scale*3.0f));
+        auto o=Obstacle(&state.assets.dooro,pos,scale*50.0);
+        colision_id=o.unique_id;
+        SpawnnObstacle(o);
     }
 
     void onDraw() override
     {
-        auto& texture = state.assets.doort;
-        DrawTexturePro(state.assets.doort, { 0.0f, 0.0f, (float)texture.width, (float)texture.height },
-            {pos.x, pos.y, (float)texture.width*scale/8, (float)texture.height*scale/8},
-            {0,0}, 0.0f, WHITE);
+        if (active) {
+            auto& texture = state.assets.doort;
+            DrawTexturePro(state.assets.doort, { 0.0f, 0.0f, (float)texture.width, (float)texture.height },
+                {pos.x, pos.y, (float)texture.width*scale, (float)texture.height*scale},
+                {0,0}, 0.0f, WHITE);
+        }
+
     }
 
     void onUpdate() override
     {
         if (state.last_signal==signal) {
-            this->flags.pendingDestroy =true;
+            active=false;
+            state.obstacles.getById(colision_id)->active=false;
+            //this->flags.pendingDestroy =true;
         }
     }
 
