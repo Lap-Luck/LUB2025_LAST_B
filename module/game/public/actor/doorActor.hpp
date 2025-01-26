@@ -8,27 +8,30 @@ public:
     DoorActor(GameState& inState,Vec2f inPos) : Actor(inState,inPos) {}
     ~DoorActor(){}
 
+    std::string signal="a";
+
     void onPlaced() override
     {
-
-        CutLine cut = CutLine{pos+Vec2f{50,0},100};
-        SpawnnCutLine(cut);
-
-
-
-        auto cutId = cut.unique_id;
-        state.cuts.values.push_back(std::move(cut));
-
-        Obstacle obstacle = Obstacle(&state.assets.spikeMask,pos,3.0f);
-        auto obstalceId = obstacle.unique_id;
-        state.obstacles.values.push_back(std::move(obstacle));
+        SpawnnObstacle(Obstacle(&state.assets.dooro,pos,3.0f));
     }
 
     void onDraw() override
     {
-        auto& texture = state.assets.spike;
-        DrawTexturePro(state.assets.spike, { 0.0f, 0.0f, (float)texture.width, (float)texture.height },
+        auto& texture = state.assets.doort;
+        DrawTexturePro(state.assets.doort, { 0.0f, 0.0f, (float)texture.width, (float)texture.height },
             {pos.x, pos.y, (float)texture.width/8, (float)texture.height/8},
             {0,0}, 0.0f, WHITE);
+    }
+
+    void onUpdate() override
+    {
+        if (state.last_signal==signal) {
+            this->flags.pendingDestroy =true;
+        }
+    }
+
+    void onSerialize(ISerialize* inSerialize) override {
+        Actor::onSerialize(inSerialize);
+        inSerialize->propertyString("signal_name",signal);
     }
 };

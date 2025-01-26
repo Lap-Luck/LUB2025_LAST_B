@@ -108,7 +108,7 @@ void Game::onUpdate(float deltaTime)
 
     camera.zoom = screenSize.x/1440.f;
     float my=max_bubble_y(state.bubbles.values);
-    camera.target= Vec2f(0,my);
+    camera.target= Vec2f(0,cameraHeigth);
     camera.offset= Vec2f(screenSize.x/2,screenSize.y*0.5);
 
     for (int b_id:range(state.bubbles.values.size())){
@@ -154,24 +154,26 @@ void Game::onUpdate(float deltaTime)
                         new_bubble.particles.swap(particlesAB[1]);
                         state.bubbles.values.push_back(new_bubble);
                     }
-
-
                     cuts=true;
                     break;
-
-
                 }
             }
         }
     }
 
+    cameraHeigth=fmin(max_bubble_y(state.bubbles.values),cameraHeigth-0.3);
 
-    camera.target= Vec2f(0.0,fmin(max_bubble_y(state.bubbles.values),camera.target.y-0.3));
 
     state.obstacles.deletePending();
     state.bubbles.deletePending();
     state.actors.deletePending();
     state.cuts.deletePending();
+}
+
+bool Game::IsGameOver() {
+    for (int b_id:range(state.bubbles.values.size())) {
+
+    }
 }
 
 void Game::onDraw()

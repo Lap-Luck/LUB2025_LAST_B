@@ -52,17 +52,22 @@ public:
     Texture2D unknownTexture {};
     Texture2D spike {};
     Texture2D szczupakf{};
+    Texture2D szczupakfR{};
 
     ObstacleMask spikeMask {};
 
     ObstacleMask fish1{};
     ObstacleMask fish2{};
+    ObstacleMask fish1R{};
+    ObstacleMask fish2R{};
 
     std::map<std::string,Texture2D> backgroundSprite {};
 
     std::vector<Texture2DPlus> obstaclesTexturesPlus{};
     std::vector<Texture2DPlus> obstaclesTexturesPlusR{};
 
+    Texture2D doort{};
+    ObstacleMask dooro{};
 
     void load();
 

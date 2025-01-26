@@ -1,6 +1,7 @@
 #pragma once
 #include "actor.hpp"
 #include "backgroundActor.hpp"
+#include "buttonActor.hpp"
 #include "doorActor.hpp"
 #include "FishActor.hpp"
 #include "ObstacleActor.hpp"
@@ -20,7 +21,8 @@ inline ActorFactory ConstructAssetFactorty()
         GenEntry<DoorActor>([](auto& state){return std::make_unique<DoorActor>(state,Vec2f{});}),
         GenEntry<ObstacleActor>([](auto& state){return std::make_unique<ObstacleActor>(state,Vec2f{},0);}),
         GenEntry<BackgroundActor>([](auto& state){return std::make_unique<BackgroundActor>(state,Vec2f{});}),
-        GenEntry<FishActor>([](auto& state){return std::make_unique<FishActor>(state,Vec2f{});})
+        GenEntry<FishActor>([](auto& state){return std::make_unique<FishActor>(state,Vec2f{});}),
+        GenEntry<ButtonActor>([](auto& state){return std::make_unique<ButtonActor>(state,Vec2f{});})
 
     }};
 }

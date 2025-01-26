@@ -9,7 +9,31 @@ void AssetsContainer::load()
     unknownTexture = LoadTexture("unknown.png");
     spike = LoadTexture("spike.png");
     szczupakf = LoadTexture("szczupak_final.png");
+    {
+        Image i=LoadImage("szczupak_final.png");
+        ImageFlipHorizontal(&i);
+        szczupakfR =LoadTextureFromImage(i);
+
+    }
+
+    doort=LoadTexture("door.png");
+    dooro=LoadObstacleMask(LoadImage48("door_coli.png"));
+
     spikeMask= LoadObstacleMask(LoadImage48("col_long.png"));
+
+    {
+        auto cmasks=LoadObstacleMasks(LoadImage48("szczupak_final_mask.png"),2);
+
+        fish1=cmasks[0];
+        fish2=cmasks[1];
+    }
+    {
+        auto cmasks=LoadObstacleMasks(LoadImage48("szczupak_final_mask.png",true),2);
+
+        fish1R=cmasks[0];
+        fish2R=cmasks[1];
+    }
+
 
     //obstaclesTexturesPlus.push_back(Load2DPlus("buton_off_full.png","buton_off_full_mask.png"));
     //obstaclesTexturesPlus.push_back(Load2DPlus("szczupak_final.png","szczupak_final_mask.png"));

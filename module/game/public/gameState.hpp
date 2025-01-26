@@ -98,4 +98,5 @@ public:
     ObstacleContainer obstacles {};
     CutLineContainer cuts {};
     ActorContainer actors {};
+    std::string last_signal;
 };

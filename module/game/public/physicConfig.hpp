@@ -2,7 +2,8 @@
 
 enum{
   OLD,
-  CALM
+  CALM,
+    PHYSIC_ENGINE_COUNT
 };
 
 struct PhysicsConfig

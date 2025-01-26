@@ -20,11 +20,12 @@ public:
     void onInitialize();
     void onUpdate(float deltaTime);
     void onDraw();
+    bool IsGameOver();
 
     Vec2i screenSize {};
 
     GameState& state;
-
+    float cameraHeigth=0.0f;
 protected:
     Vector2 ballPosition = { 100,100 };
 
