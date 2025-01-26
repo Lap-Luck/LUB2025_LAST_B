@@ -160,7 +160,7 @@ void Game::onUpdate(float deltaTime)
             }
         }
     }
-    float CAMERA_VEL=1.0f;
+    float CAMERA_VEL=state.config.minimalCameraSpeed;
     cameraHeigth=fmin(max_bubble_y(state.bubbles.values),cameraHeigth-CAMERA_VEL);
 
 

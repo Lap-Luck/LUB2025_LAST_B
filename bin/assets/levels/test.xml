@@ -69,5 +69,17 @@
 		<orientation>NormalOrientation</orientation>
 		<scale>1.000000</scale>
 	</actor>
+	<actor>
+		<TYPE>FishActor</TYPE>
+		<pos.x>443.336548</pos.x>
+		<pos.y>-1013.377563</pos.y>
+		<to_move>-1000.000000</to_move>
+	</actor>
+	<actor>
+		<TYPE>FishActor</TYPE>
+		<pos.x>-166.038177</pos.x>
+		<pos.y>-1312.205566</pos.y>
+		<to_move>1000.000000</to_move>
+	</actor>
 </state>
 
