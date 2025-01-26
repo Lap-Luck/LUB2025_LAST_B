@@ -17,12 +17,27 @@
 	</actor>
 	<actor>
 		<TYPE>ObstacleActor</TYPE>
-		<pos.x>-17.343721</pos.x>
-		<pos.y>-764.585876</pos.y>
+		<pos.x>-480.173279</pos.x>
+		<pos.y>-1142.042480</pos.y>
 		<grafix_id>0</grafix_id>
 		<scale>1.000000</scale>
 		<orientation>NormalOrientation</orientation>
-		<soundOnHit>wallHit</soundOnHit>
+	</actor>
+	<actor>
+		<TYPE>ObstacleActor</TYPE>
+		<pos.x>503.274231</pos.x>
+		<pos.y>-1264.854492</pos.y>
+		<grafix_id>0</grafix_id>
+		<scale>1.000000</scale>
+		<orientation>NormalOrientation</orientation>
+	</actor>
+	<actor>
+		<TYPE>ObstacleActor</TYPE>
+		<pos.x>22.622478</pos.x>
+		<pos.y>-2014.442505</pos.y>
+		<grafix_id>0</grafix_id>
+		<scale>1.000000</scale>
+		<orientation>NormalOrientation</orientation>
 	</actor>
 	<levelConfig>
 		<spawnBubble>true</spawnBubble>

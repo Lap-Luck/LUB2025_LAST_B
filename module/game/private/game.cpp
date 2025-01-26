@@ -97,6 +97,8 @@ void Game::onInitialize()
             25.0));
     }
 
+    SetSoundVolume(state.assets.sound[state.config.ObstacleOnHitSound],state.config.ObstacleOnHitVolume);
+
     for (auto& it : state.actors.values)
     {
         it->onPlaced();

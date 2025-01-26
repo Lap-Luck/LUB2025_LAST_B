@@ -26,7 +26,7 @@ public:
         auto* ob = SpawnnObstacle(Obstacle(&om,Vector2(pos-Vec2f{texture.width*scale/2.f,texture.height*scale/2.f}),sx));
         ob->onHit = [&](class Bubble* b)
         {
-            //PlaySound(state.assets.sound[state.config.]);
+            PlaySound(state.assets.sound[state.config.ObstacleOnHitSound]);
         };
     }
 
@@ -59,9 +59,6 @@ public:
         inSerialize->propertyEnum("orientation",{"NormalOrientation","FlipHorizontal"},s);
         flag_mirror = s=="FlipHorizontal";
 
-
-
-        //inSerialize->propertyEnum("soundOnHit",state.assets.soundKeys,soundOnHit);
     }
 
     void requestChangeScale(float inChange) override

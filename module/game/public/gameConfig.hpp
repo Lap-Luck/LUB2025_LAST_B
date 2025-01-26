@@ -1,4 +1,6 @@
 #pragma once
+#include <physicConfig.hpp>
+#include <string>
 
 class GameConfig
 {
@@ -8,16 +10,7 @@ class GameConfig
 
         float minimalCameraSpeed = 1.0f;
         std::string ObstacleOnHitSound = "default";
+        float ObstacleOnHitVolume = 1.0f;
 
-        void onSerialize(ISerialize* inSerialize)
-        {
-            inSerialize->propertyBool("debugDraw",debugDraw);
-            inSerialize->propertyFloat("minimalCameraSpeed",minimalCameraSpeed);
-            inSerialize->propertyFloat("minimalCameraSpeed",minimalCameraSpeed);
-
-            inSerialize->propertyStruct("PhysicsConfig",[&](auto* ctx)
-            {
-                physicsConfig.onSerialize(ctx);
-            });
-        };
+        void onSerialize(ISerialize* inSerialize,class GameState& state);
 };

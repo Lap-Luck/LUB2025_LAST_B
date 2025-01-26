@@ -48,7 +48,7 @@ inline WindowManager* WindowManager::get()
 inline void WindowManager::run(const Vec2i inWinSize, std::function<void(void)> inLoadAssetCallback)
 {
     SetConfigFlags(FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT | FLAG_WINDOW_RESIZABLE);
-    InitWindow(inWinSize.x, inWinSize.y, "QEditor");
+    InitWindow(inWinSize.x, inWinSize.y, "LubJamEngine");
     rlImGuiSetup(true);
     ImGui::GetIO().ConfigWindowsMoveFromTitleBarOnly = true;
 #ifdef IMGUI_HAS_DOCK

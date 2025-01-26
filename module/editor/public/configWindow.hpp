@@ -31,7 +31,7 @@ public:
         SerializePreview preview;
 
         ImGui::LabelText("Global","Global");
-        state.config.onSerialize(&preview);
+        state.config.onSerialize(&preview,state);
         ImGui::Separator();
         ImGui::LabelText("Level","Level");
         state.levelConfig.onSerialize(&preview);

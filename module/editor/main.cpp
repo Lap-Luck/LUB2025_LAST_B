@@ -10,6 +10,7 @@
 #include "selectionWindow.hpp"
 #include "SerializeWrite.hpp"
 #include "actor/registeredActors.hpp"
+#include "configSerializeHelpers.hpp"
 
 WindowManager*  WindowManager::instance = nullptr;
 InputManager*   InputManager::instance = nullptr;
@@ -21,7 +22,11 @@ int main(void)
     GameState state {};
     EditorState edState {};
     Game game {state};
+
+    ChangeDirectory("assets");
+
     state.actorFactory = ConstructAssetFactorty();
+    ConfigLoad("config",state);
 
     WindowManager::get()->queueAddWindowView(std::make_unique<EditorWindow>(state,edState));
     //WindowManager::get()->queueAddWindowView(std::make_unique<GameWindow>(game));
@@ -38,11 +43,12 @@ int main(void)
             SetExitKey(KEY_F12);
 
             SetTargetFPS(60);
-            ChangeDirectory("assets");
             state.assets.load();
             loadFromFile("default",state);
         }
     );
     CloseAudioDevice();
+    ConfigSave("config",state);
+
     return 0;
 }

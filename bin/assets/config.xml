@@ -1,0 +1,12 @@
+<config>
+	<debugDraw>false</debugDraw>
+	<minimalCameraSpeed>1.000000</minimalCameraSpeed>
+	<Sound/>
+	<ObstacleOnHitSound>wallHit</ObstacleOnHitSound>
+	<ObstacleOnHitVolume>0.005000</ObstacleOnHitVolume>
+	<PhysicsConfig>
+		<type>0</type>
+		<lerp_gravity>0</lerp_gravity>
+	</PhysicsConfig>
+</config>
+
