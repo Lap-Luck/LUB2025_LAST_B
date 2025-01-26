@@ -5,6 +5,7 @@
 #include "assetsContainer.hpp"
 #include "bubble.hpp"
 #include "obstacle.hpp"
+#include "physicConfig.hpp"
 #include "raylib.h"
 
 #include "actor.hpp"
@@ -89,6 +90,7 @@ class GameState
 public:
     AssetsContainer assets;
     ActorFactory actorFactory {};
+    PhysicsConfig physicsConfig {};
 
     BubblesContainer bubbles {};
     ObstacleContainer obstacles {};

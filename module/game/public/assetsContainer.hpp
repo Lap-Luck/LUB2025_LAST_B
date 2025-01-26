@@ -55,6 +55,9 @@ public:
 
     ObstacleMask spikeMask {};
 
+    ObstacleMask fish1{};
+    ObstacleMask fish2{};
+
     std::map<std::string,Texture2D> backgroundSprite {};
 
     std::vector<Texture2DPlus> obstaclesTexturesPlus{};
