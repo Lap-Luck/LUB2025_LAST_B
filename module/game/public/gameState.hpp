@@ -1,5 +1,6 @@
 #pragma once
 #include <memory>
+#include <optional>
 #include <vector>
 
 #include "assetsContainer.hpp"
@@ -10,7 +11,7 @@
 
 #include "actor.hpp"
 #include "gameConfig.hpp"
-
+#include "levelConfig.hpp"
 class ObstacleContainer
 {
 public:
@@ -90,6 +91,7 @@ class GameState
 {
 public:
     GameConfig config;
+    LevelConfig levelConfig;
 
     AssetsContainer assets;
     ActorFactory actorFactory {};
@@ -99,4 +101,15 @@ public:
     CutLineContainer cuts {};
     ActorContainer actors {};
     std::string last_signal;
+
+    struct SceneControl
+    {
+        std::optional<std::string> changeLevel {};
+    } sceneControl;
+
+    struct Temp
+    {
+        Vec2i screenSize {};
+        Vec2f mouseWorldPos {};
+    } temp;
 };

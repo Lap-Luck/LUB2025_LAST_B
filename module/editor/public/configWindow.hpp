@@ -29,7 +29,13 @@ public:
     void onImGuiDraw() override
     {
         SerializePreview preview;
+
+        ImGui::LabelText("Global","Global");
         state.config.onSerialize(&preview);
+        ImGui::Separator();
+        ImGui::LabelText("Level","Level");
+        state.levelConfig.onSerialize(&preview);
+
     }
 
 protected:

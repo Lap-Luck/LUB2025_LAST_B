@@ -23,6 +23,7 @@ public:
     bool IsGameOver();
 
     Vec2i screenSize {};
+    Vec2f winPos {0,0};
 
     GameState& state;
     float cameraHeigth=0.0f;

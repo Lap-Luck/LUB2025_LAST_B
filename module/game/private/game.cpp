@@ -1,5 +1,6 @@
 #include "game.hpp"
 
+#include <actorSerializeHelpers.hpp>
 #include <iostream>
 
 #include "obstacle.hpp"
@@ -87,11 +88,14 @@ void Game::onInitialize()
 
     state.cuts.values.push_back(CutLine({280.0,0.0},-50.0));
     */
-    state.bubbles.values.push_back(Bubble(
-        (Vector2){0,0.0},
-        (Vector2){0.0,-100.0},
-        25.0));
     camera.rotation = 0.f;
+    if (state.levelConfig.spawnBubble)
+    {
+        state.bubbles.values.push_back(Bubble(
+            (Vector2){0,0.0},
+            (Vector2){0.0,-100.0},
+            25.0));
+    }
 
     for (auto& it : state.actors.values)
     {
@@ -101,17 +105,33 @@ void Game::onInitialize()
 
 void Game::onUpdate(float deltaTime)
 {
+    state.temp.screenSize = screenSize;
+    Vec2f mousePos;
+    mousePos.x = (GetMousePosition().x - winPos.x);
+    mousePos.y = (GetMousePosition().y - winPos.y);
+    state.temp.mouseWorldPos = GetScreenToWorld2D(Vector2(mousePos), camera);
+
     for (auto& it : state.actors.values)
     {
         it->onUpdate();
     }
 
     camera.zoom = screenSize.x/1440.f;
-    float my=max_bubble_y(state.bubbles.values);
-    camera.target= Vec2f(0,cameraHeigth);
+    if (state.levelConfig.spawnBubble)
+    {
+        float CAMERA_VEL=state.config.minimalCameraSpeed;
+        cameraHeigth=fmin(max_bubble_y(state.bubbles.values),cameraHeigth-CAMERA_VEL);
+        camera.target= Vec2f(0,cameraHeigth);
+    }
+    else
+    {
+        camera.target= Vec2f(0,0);
+    }
+
     camera.offset= Vec2f(screenSize.x/2,screenSize.y*0.5);
 
-    for (int b_id:range(state.bubbles.values.size())){
+    for (int b_id:range(state.bubbles.values.size()))
+    {
         Bubble& b=state.bubbles.values[b_id];
         b.frame(state.obstacles.values,state.cuts.values);
     }
@@ -160,9 +180,6 @@ void Game::onUpdate(float deltaTime)
             }
         }
     }
-    float CAMERA_VEL=state.config.minimalCameraSpeed;
-    cameraHeigth=fmin(max_bubble_y(state.bubbles.values),cameraHeigth-CAMERA_VEL);
-
 
     state.obstacles.deletePending();
     state.bubbles.deletePending();
@@ -170,6 +187,13 @@ void Game::onUpdate(float deltaTime)
     state.cuts.deletePending();
     if (IsGameOver()) {
 
+    }
+    if (state.sceneControl.changeLevel)
+    {
+        loadFromFile(state.sceneControl.changeLevel.value(),state);
+        onInitialize();
+
+        state.sceneControl.changeLevel = {};
     }
 }
 

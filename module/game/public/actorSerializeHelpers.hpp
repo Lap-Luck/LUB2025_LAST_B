@@ -28,6 +28,11 @@ inline void saveToFile(std::string name, GameState& state)
         });
     }
 
+    serializer.propertyStruct("levelConfig",[&](auto* structSerializer)
+    {
+        state.levelConfig.onSerialize(structSerializer);
+    });
+
 
     std::ofstream out("levels/"+name+".xml");
     out << root;
@@ -56,6 +61,12 @@ inline void loadFromFile(std::string name, GameState& state)
             auto actor = entry->construct(state);
             actor->onSerialize(actorCtx);
             state.actors.values.push_back(std::move(actor));
+        });
+
+        ctx->propertyStruct("levelConfig",[&](auto* structSerializer)
+        {
+            state.levelConfig = LevelConfig();
+            state.levelConfig.onSerialize(structSerializer);
         });
     });
 

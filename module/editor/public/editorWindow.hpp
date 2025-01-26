@@ -155,6 +155,7 @@ class EditorWindow : public Window
                 for (auto& it : state.actors.values)
                 {
                     DrawCircle(it->pos.x,it->pos.y,20/camera.zoom,PINK);
+                    DrawText(it->getClassName().c_str(),it->pos.x,it->pos.y,16,BLACK);
                 }
 
                 DrawRectangleLines(-1440/2,-2000,1440,2000,BLACK);

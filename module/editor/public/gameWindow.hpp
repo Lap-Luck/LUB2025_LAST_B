@@ -35,7 +35,7 @@ class GameWindow : public Window
 
         void onUpdate(float deltaTime) override
         {
-
+            game.winPos = {renderer.lastRenderedScreenRect.x,renderer.lastRenderedScreenRect.y};
             if(focused)
             {
                 if (IsKeyPressed(KEY_ESCAPE))

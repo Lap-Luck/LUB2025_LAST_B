@@ -4,6 +4,7 @@
 #include "buttonActor.hpp"
 #include "doorActor.hpp"
 #include "FishActor.hpp"
+#include "MenuButtonActor.hpp"
 #include "ObstacleActor.hpp"
 #include "spikeActor.hpp"
 
@@ -22,7 +23,8 @@ inline ActorFactory ConstructAssetFactorty()
         GenEntry<ObstacleActor>([](auto& state){return std::make_unique<ObstacleActor>(state,Vec2f{},0);}),
         GenEntry<BackgroundActor>([](auto& state){return std::make_unique<BackgroundActor>(state,Vec2f{});}),
         GenEntry<FishActor>([](auto& state){return std::make_unique<FishActor>(state,Vec2f{});}),
-        GenEntry<ButtonActor>([](auto& state){return std::make_unique<ButtonActor>(state,Vec2f{});})
+        GenEntry<ButtonActor>([](auto& state){return std::make_unique<ButtonActor>(state,Vec2f{});}),
+        GenEntry<MenuButtonActor>([](auto& state){return std::make_unique<MenuButtonActor>(state,Vec2f{});})
 
     }};
 }
