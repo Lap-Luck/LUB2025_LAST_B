@@ -33,14 +33,14 @@ public:
         {
             keys.push_back(it.first);
         }
-        inSerialize->propertyEnum("selectedTexture",keys,selectedTexture);
-        inSerialize->propertyString("loadLevelOnClick",loadLevelOnClick);
         inSerialize->propertyFloat("scale",scale);
+        inSerialize->propertyEnum("selectedTexture",keys,selectedTexture);
+        inSerialize->propertyEnum("loadLevelOnClick",state.assets.allLevelsName,loadLevelOnClick);
     }
 
     void onUpdate() override
     {
-        if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
+        if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
         {
             auto& texture = state.assets.buttonSprite[selectedTexture];
             float offset = texture.width*scale/2.f;

@@ -38,6 +38,7 @@ int main(void)
             SetTargetFPS(60);
             ChangeDirectory("assets");
             state.assets.load();
+            loadFromFile("default",state);
         }
     );
 

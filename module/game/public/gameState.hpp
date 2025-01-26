@@ -87,6 +87,7 @@ public:
     }
 };
 
+
 class GameState
 {
 public:
@@ -101,6 +102,8 @@ public:
     CutLineContainer cuts {};
     ActorContainer actors {};
     std::string last_signal;
+
+
 
     struct SceneControl
     {

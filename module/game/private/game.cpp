@@ -188,6 +188,9 @@ void Game::onUpdate(float deltaTime)
     if (state.levelConfig.spawnBubble && IsGameOver()) {
         state.sceneControl.changeLevel = "gameOver";
     }
+    if (state.levelConfig.spawnBubble && IsWinOver()) {
+        state.sceneControl.changeLevel = "winOver";
+    }
     if (state.sceneControl.changeLevel)
     {
         loadFromFile(state.sceneControl.changeLevel.value(),state);
@@ -205,10 +208,18 @@ bool Game::IsGameOver() {
             game_over=false;
         }
     }
-    if (game_over) {
-        printf("saaa");
-    }
     return game_over;
+}
+
+bool Game::IsWinOver() {
+    bool winOver=false;
+    for (int b_id:range(state.bubbles.values.size())) {
+        float h=state.bubbles.values[b_id].pos.y;
+        if (h<-state.levelConfig.levelHeight*1440) {
+            winOver=true;
+        }
+    }
+    return winOver;
 }
 
 void Game::onDraw()

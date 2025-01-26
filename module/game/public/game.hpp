@@ -21,6 +21,7 @@ public:
     void onUpdate(float deltaTime);
     void onDraw();
     bool IsGameOver();
+    bool IsWinOver();
 
     Vec2i screenSize {};
     Vec2f winPos {0,0};

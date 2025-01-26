@@ -46,9 +46,12 @@ namespace {
 
 }
 
+
 class AssetsContainer
 {
 public:
+    std::vector<std::string> allLevelsName {};
+
     Texture2D unknownTexture {};
     Texture2D spike {};
     Texture2D szczupakf{};

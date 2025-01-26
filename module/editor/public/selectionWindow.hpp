@@ -10,6 +10,8 @@
 #include "window.hpp"
 #include "serializePreview.hpp"
 
+
+
 class SelectionWindow : public Window
 {
 public:
@@ -19,7 +21,6 @@ public:
 
     void onInstanced() override
     {
-
     }
 
     void onUpdate(float deltaTime) override
@@ -43,16 +44,12 @@ public:
         ImGui::Separator();
 
         SerializePreview preview;
-        preview.propertyString("file",fileName);
-
-        if(ImGui::Button("Save"))
+        std::string lvl = fileName;
+        preview.propertyEnum("level selected",state.assets.allLevelsName,lvl);
+        if (lvl != fileName)
         {
             saveToFile(fileName,state);
-        }
-
-        ImGui::SameLine();
-        if(ImGui::Button("Load"))
-        {
+            fileName = lvl;
             loadFromFile(fileName,state);
         }
 

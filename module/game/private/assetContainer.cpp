@@ -17,8 +17,25 @@ void loadFromFolder(std::map<std::string,Texture2D>& ref,std::string name)
     }
 }
 
+std::vector<std::string> getAllLevels()
+{
+    std::vector<std::string> out;
+    auto backgrounds = LoadDirectoryFiles(("levels\\"));
+    for (int idx = 0; idx != backgrounds.count; idx++)
+    {
+        std::string path= backgrounds.paths[idx];
+        auto s = path.find_last_of('\\');
+        auto e = path.find_last_of('.');
+
+        out.push_back(path.substr(s+1,e-s-1));
+    }
+    return out;
+}
+
 void AssetsContainer::load()
 {
+    allLevelsName = getAllLevels();
+
     unknownTexture = LoadTexture("unknown.png");
     spike = LoadTexture("spike.png");
     szczupakf = LoadTexture("szczupak_final.png");
