@@ -12,6 +12,8 @@ public:
     Vec2f offset;
     Vec2f vel;
 
+
+
     BubbleP(Vec2f _pos,Vec2f _offset, Vec2f _vel) {
         pos=_pos;
         vel=_vel;
@@ -63,6 +65,7 @@ class Bubble
 public:
     Vector2 pos;
     Vector2 vel;
+    Vector2 old_vel;
     Vector2 lpvel={0.0f,0.0f};
     float r;
     std::vector<BubbleP> particles;
@@ -80,6 +83,7 @@ public:
     Bubble(Vector2 _pos,Vector2 _vel,float _r,int _divided=0,int p_num=10){
         this->pos=_pos;
         this->vel=_vel;
+        this->old_vel=_vel;
         this->r=_r;
         this->divided=_divided;
         this->lifetime=0.0f;
@@ -122,12 +126,12 @@ public:
 
         std::vector<cInfo> cis = get_collding(obs);
         for (int ci_id:range(cis.size())) {
-            cInfo ci= cis[ci_id];
-            Vector2 A=ci.A;
-            Vector2 B=ci.B;
+            cInfo ci = cis[ci_id];
+            Vector2 A = ci.A;
+            Vector2 B = ci.B;
 
-            Vec2f C=ci.C;
-            float d=ci.d;
+            Vec2f C = ci.C;
+            float d = ci.d;
 
 
             float pen=(r-d)*1.001;
@@ -146,6 +150,7 @@ public:
         for (int p_id:range(particles.size())) {
             BubbleP& bp=particles[p_id];
             bp.follow(pos,lifetime);
+            bp.vel+=(old_vel-vel)*1.2f;
 
 
         }
@@ -182,10 +187,11 @@ public:
 
 
     void draw() {
-        DrawCircleV(pos,r, Color(255,255,0,100));
+
+        DrawCircleGradient(pos.x,pos.y,r, Color(0,155,255,100),Color(0,255,255,200));
         for (int id:range(particles.size())) {
             BubbleP bp=particles[id];
-            DrawCircleV(bp.pos,r/10, Color(255,0,0,255));
+            DrawCircleV(bp.pos,r/10, Color(0,255,255,20));
 
         }
     }
