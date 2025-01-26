@@ -1,12 +1,7 @@
 <state>
-	<actor>
-		<TYPE>FishActor</TYPE>
-		<pos.x>-571.752563</pos.x>
-		<pos.y>-579.851562</pos.y>
-		<to_move>-1000.000000</to_move>
-	</actor>
 	<levelConfig>
 		<spawnBubble>true</spawnBubble>
+		<levelHeight>3</levelHeight>
 	</levelConfig>
 </state>
 

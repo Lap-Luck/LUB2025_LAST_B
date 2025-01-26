@@ -36,8 +36,8 @@ public:
 
     void propertyInt(std::string inName, int& inValue) override
     {
-        float temp = inValue;
-        ImGui::InputFloat(inName.c_str(),&temp);
+        int temp = inValue;
+        ImGui::InputInt(inName.c_str(),&temp);
         if(temp != inValue)
             inValue = temp;
     }

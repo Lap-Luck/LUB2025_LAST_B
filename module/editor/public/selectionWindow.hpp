@@ -33,7 +33,7 @@ public:
 
     void onImGuiDraw() override
     {
-        if(ImGui::Button("Start"))
+        if(ImGui::Button("Start") || IsKeyPressed(KEY_F1))
         {
             saveToFile(fileName,state);
             Game game {state};

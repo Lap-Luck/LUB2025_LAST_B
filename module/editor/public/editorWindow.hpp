@@ -168,11 +168,10 @@ class EditorWindow : public Window
                     DrawText(it->getClassName().c_str(),it->pos.x,it->pos.y,16,BLACK);
                 }
 
-                DrawRectangleLines(-1440/2,-2000,1440,2000,BLACK);
+                DrawRectangleLines(-1440/2,-1440*state.levelConfig.levelHeight,1440,1440*state.levelConfig.levelHeight,BLACK);
 
                 DrawCircle(0,0,20/camera.zoom,BLUE);
                 EndMode2D();
-
             });
         }
 
