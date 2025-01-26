@@ -3,7 +3,7 @@
 class GameConfig
 {
     public:
-        bool debugDraw {true};
+        bool debugDraw {false};
         PhysicsConfig physicsConfig {};
 
         float minimalCameraSpeed = 1.0f;

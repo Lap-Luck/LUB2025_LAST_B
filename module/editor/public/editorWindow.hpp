@@ -91,6 +91,7 @@ class EditorWindow : public Window
 
                 if (!capturedInput)
                 {
+                    std::shared_ptr<Actor> toDelete {};
                     for (auto& it : state.actors.values)
                     {
                         Vec2f inWorld = it->pos;
@@ -103,6 +104,11 @@ class EditorWindow : public Window
                             {
                                 edState.draggingActor = it;
                                 edState.selectedActor = it;
+                            }
+
+                            if (IsKeyPressed(KEY_DELETE))
+                            {
+                                toDelete = it;
                             }
 
                             if (IsKeyDown(KEY_R))
@@ -128,6 +134,10 @@ class EditorWindow : public Window
 
                             capturedInput = true;
                         }
+                    }
+                    if (toDelete)
+                    {
+                        std::erase_if(state.actors.values,[&](auto& in) { return in.get() == toDelete.get(); });
                     }
                 }
 

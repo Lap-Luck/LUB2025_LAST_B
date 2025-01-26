@@ -62,4 +62,9 @@ public:
     {
         scale += inChange;
     }
+
+    void requestChangeRotation(float inChange) override
+    {
+        flag_mirror = inChange > 0 ? true : false;
+    }
 };

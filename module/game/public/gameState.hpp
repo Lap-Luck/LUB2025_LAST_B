@@ -111,5 +111,6 @@ public:
     {
         Vec2i screenSize {};
         Vec2f mouseWorldPos {};
+        bool  forceLoadInEditor {false};
     } temp;
 };

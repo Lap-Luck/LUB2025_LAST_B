@@ -185,8 +185,8 @@ void Game::onUpdate(float deltaTime)
     state.bubbles.deletePending();
     state.actors.deletePending();
     state.cuts.deletePending();
-    if (IsGameOver()) {
-
+    if (state.levelConfig.spawnBubble && IsGameOver()) {
+        state.sceneControl.changeLevel = "gameOver";
     }
     if (state.sceneControl.changeLevel)
     {
@@ -222,13 +222,13 @@ void Game::onDraw()
         it->onDraw();
     }
 
+    for (int b_id:range(state.bubbles.values.size())){
+        Bubble& b=state.bubbles.values[b_id];
+        b.draw();
+    }
+
     if (state.config.debugDraw)
     {
-        for (int b_id:range(state.bubbles.values.size())){
-            Bubble& b=state.bubbles.values[b_id];
-            b.draw();
-        }
-
         for (int o_id:range(state.obstacles.values.size())){
             Obstacle& o=state.obstacles.values[o_id];
             o.draw();

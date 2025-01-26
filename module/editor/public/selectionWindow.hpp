@@ -24,13 +24,18 @@ public:
 
     void onUpdate(float deltaTime) override
     {
-
+        if (state.temp.forceLoadInEditor)
+        {
+            loadFromFile(fileName,state);
+            state.temp.forceLoadInEditor = false;
+        }
     }
 
     void onImGuiDraw() override
     {
         if(ImGui::Button("Start"))
         {
+            saveToFile(fileName,state);
             Game game {state};
             game.onInitialize();
             WindowManager::get()->queueAddWindowView(std::make_unique<GameWindow>(game));

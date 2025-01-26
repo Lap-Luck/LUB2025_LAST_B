@@ -13,6 +13,10 @@ class GameWindow : public Window
 {
     public:
         explicit GameWindow(Game inGame) : Window("GameWindow"), game(std::move(inGame)) {}
+        ~GameWindow()
+        {
+            game.state.temp.forceLoadInEditor = true;
+        }
 
         void onInstanced() override
         {
