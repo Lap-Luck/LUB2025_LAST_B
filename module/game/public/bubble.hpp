@@ -63,6 +63,7 @@ class Bubble
 public:
     Vector2 pos;
     Vector2 vel;
+    Vector2 lpvel={0.0f,0.0f};
     float r;
     std::vector<BubbleP> particles;
     int cut_id;
@@ -141,6 +142,7 @@ public:
                 vel.x=-vel.x*0.99;
             }
         }
+        //vel=lpvel;
         for (int p_id:range(particles.size())) {
             BubbleP& bp=particles[p_id];
             bp.follow(pos,lifetime);

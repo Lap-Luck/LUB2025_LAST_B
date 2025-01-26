@@ -12,7 +12,7 @@ public:
     bool active=true;
     void onPlaced() override
     {
-        Obstacle obstacle = Obstacle(&state.assets.spikeMask,pos,3.0f);
+        Obstacle obstacle = Obstacle(&state.assets.obstaclesTexturesPlus[1].masks[0],pos,3.0f);
 
         obstacle.onHit = [this](Bubble* bubble)
         {

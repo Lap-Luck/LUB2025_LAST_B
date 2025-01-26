@@ -9,17 +9,18 @@ public:
     ~DoorActor(){}
 
     std::string signal="a";
+    float scale=1.0f;
 
     void onPlaced() override
     {
-        SpawnnObstacle(Obstacle(&state.assets.dooro,pos,3.0f));
+        SpawnnObstacle(Obstacle(&state.assets.dooro,pos,scale*3.0f));
     }
 
     void onDraw() override
     {
         auto& texture = state.assets.doort;
         DrawTexturePro(state.assets.doort, { 0.0f, 0.0f, (float)texture.width, (float)texture.height },
-            {pos.x, pos.y, (float)texture.width/8, (float)texture.height/8},
+            {pos.x, pos.y, (float)texture.width*scale/8, (float)texture.height*scale/8},
             {0,0}, 0.0f, WHITE);
     }
 
@@ -33,5 +34,6 @@ public:
     void onSerialize(ISerialize* inSerialize) override {
         Actor::onSerialize(inSerialize);
         inSerialize->propertyString("signal_name",signal);
+        inSerialize->propertyFloat("scale",scale);
     }
 };
