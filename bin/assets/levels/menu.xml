@@ -3,9 +3,15 @@
 		<TYPE>MenuButtonActor</TYPE>
 		<pos.x>-7.982013</pos.x>
 		<pos.y>-186.327515</pos.y>
+		<scale>1.000000</scale>
 		<selectedTexture>start</selectedTexture>
 		<loadLevelOnClick>default</loadLevelOnClick>
-		<scale>1.000000</scale>
+	</actor>
+	<actor>
+		<TYPE>SoundActor</TYPE>
+		<pos.x>632.498413</pos.x>
+		<pos.y>-107.388275</pos.y>
+		<selectedSound>mixDemo1</selectedSound>
 	</actor>
 	<levelConfig>
 		<spawnBubble>false</spawnBubble>

@@ -1,0 +1,15 @@
+<state>
+	<actor>
+		<TYPE>MenuButtonActor</TYPE>
+		<pos.x>-482.618713</pos.x>
+		<pos.y>-246.953125</pos.y>
+		<scale>1.000000</scale>
+		<selectedTexture>unknown</selectedTexture>
+		<loadLevelOnClick>menu</loadLevelOnClick>
+	</actor>
+	<levelConfig>
+		<spawnBubble>false</spawnBubble>
+		<levelHeight>1</levelHeight>
+	</levelConfig>
+</state>
+

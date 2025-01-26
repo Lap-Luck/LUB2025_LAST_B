@@ -17,6 +17,20 @@ void loadFromFolder(std::map<std::string,Texture2D>& ref,std::string name)
     }
 }
 
+void loadFromFolderSound(std::map<std::string,Sound>& ref,std::vector<std::string>& sounds, std::string name)
+{
+    auto backgrounds = LoadDirectoryFiles((name+"\\").c_str());
+    for (int idx = 0; idx != backgrounds.count; idx++)
+    {
+        std::string path= backgrounds.paths[idx];
+        auto s = path.find_last_of('\\');
+        auto e = path.find_last_of('.');
+
+        sounds.push_back(path.substr(s+1,e-s-1));
+        ref[path.substr(s+1,e-s-1)] = LoadSound(path.c_str());
+    }
+}
+
 std::vector<std::string> getAllLevels()
 {
     std::vector<std::string> out;
@@ -96,5 +110,6 @@ void AssetsContainer::load()
 
     loadFromFolder(backgroundSprite,"background");
     loadFromFolder(buttonSprite,"button");
+    loadFromFolderSound(sound,soundKeys,"sound");
 
 }

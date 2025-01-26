@@ -67,6 +67,9 @@ public:
     std::map<std::string,Texture2D> backgroundSprite {};
     std::map<std::string,Texture2D> buttonSprite {};
 
+    std::map<std::string,Sound> sound {};
+    std::vector<std::string> soundKeys {};
+
     std::vector<Texture2DPlus> obstaclesTexturesPlus{};
     std::vector<Texture2DPlus> obstaclesTexturesPlusR{};
 

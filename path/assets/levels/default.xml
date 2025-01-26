@@ -1,0 +1,15 @@
+<state>
+	<actor>
+		<TYPE>BackgroundActor</TYPE>
+		<pos.x>4.993118</pos.x>
+		<pos.y>-423.539673</pos.y>
+		<selectedTexture>unknown</selectedTexture>
+		<scale>1.000000</scale>
+		<rotation>0.000000</rotation>
+	</actor>
+	<levelConfig>
+		<spawnBubble>true</spawnBubble>
+		<levelHeight>1</levelHeight>
+	</levelConfig>
+</state>
+

@@ -6,6 +6,7 @@
 #include "FishActor.hpp"
 #include "MenuButtonActor.hpp"
 #include "ObstacleActor.hpp"
+#include "SoundActor.hpp"
 #include "spikeActor.hpp"
 
 template<typename T>
@@ -24,7 +25,8 @@ inline ActorFactory ConstructAssetFactorty()
         GenEntry<BackgroundActor>([](auto& state){return std::make_unique<BackgroundActor>(state,Vec2f{});}),
         GenEntry<FishActor>([](auto& state){return std::make_unique<FishActor>(state,Vec2f{});}),
         GenEntry<ButtonActor>([](auto& state){return std::make_unique<ButtonActor>(state,Vec2f{});}),
-        GenEntry<MenuButtonActor>([](auto& state){return std::make_unique<MenuButtonActor>(state,Vec2f{});})
+        GenEntry<MenuButtonActor>([](auto& state){return std::make_unique<MenuButtonActor>(state,Vec2f{});}),
+        GenEntry<SoundActor>([](auto& state){return std::make_unique<SoundActor>(state,Vec2f{});})
 
     }};
 }

@@ -23,8 +23,11 @@ public:
         ObstacleMask& om=getData().masks[0];
         float sx=((float)getData().obstaclePixelsSizeX)*1.0f*scale;
         auto& texture = getData().img;
-        SpawnnObstacle(Obstacle(&om,Vector2(pos-Vec2f{texture.width*scale/2.f,texture.height*scale/2.f}),sx));
-
+        auto* ob = SpawnnObstacle(Obstacle(&om,Vector2(pos-Vec2f{texture.width*scale/2.f,texture.height*scale/2.f}),sx));
+        ob->onHit = [&](class Bubble* b)
+        {
+            //PlaySound(state.assets.sound[state.config.]);
+        };
     }
 
     void onDraw() override {
@@ -44,6 +47,8 @@ public:
     {
         Actor::onSerialize(inSerialize);
         inSerialize->propertyInt("grafix_id",grafix_id);
+        inSerialize->propertyFloat("scale",scale);
+
         if (grafix_id>=state.assets.obstaclesTexturesPlus.size()) {
             grafix_id=state.assets.obstaclesTexturesPlus.size()-1;
         }
@@ -55,7 +60,8 @@ public:
         flag_mirror = s=="FlipHorizontal";
 
 
-        inSerialize->propertyFloat("scale",scale);
+
+        //inSerialize->propertyEnum("soundOnHit",state.assets.soundKeys,soundOnHit);
     }
 
     void requestChangeScale(float inChange) override

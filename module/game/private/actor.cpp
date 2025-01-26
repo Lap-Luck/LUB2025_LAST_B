@@ -20,8 +20,12 @@ void Actor::SpawnnCutLine(CutLine cut ) {
     state.cuts.values.push_back(std::move(cut));
     child_cutlines.push_back(cutId);
 };
-void Actor::SpawnnObstacle(Obstacle cut ) {
+ Obstacle* Actor::SpawnnObstacle(Obstacle cut ) {
     Obstacle::ObstacleId cutId = cut.unique_id;
     state.obstacles.values.push_back(std::move(cut));
     child_obstacles.push_back(cutId);
+
+
+
+    return state.obstacles.getById(cutId);
 };

@@ -47,7 +47,7 @@ public:
     std::vector<Obstacle::ObstacleId> child_obstacles={};
 
     void SpawnnCutLine(CutLine cut ) ;
-    void SpawnnObstacle(Obstacle cut ) ;
+     Obstacle* SpawnnObstacle(Obstacle cut ) ;
 
 };
 

@@ -1,15 +1,32 @@
 <state>
 	<actor>
 		<TYPE>BackgroundActor</TYPE>
-		<pos.x>4.993118</pos.x>
-		<pos.y>-423.539673</pos.y>
+		<pos.x>-1164.928711</pos.x>
+		<pos.y>-594.438110</pos.y>
 		<selectedTexture>unknown</selectedTexture>
 		<scale>1.000000</scale>
 		<rotation>0.000000</rotation>
 	</actor>
+	<actor>
+		<TYPE>SoundActor</TYPE>
+		<pos.x>-939.703125</pos.x>
+		<pos.y>-245.960815</pos.y>
+		<selectedSound>unknown</selectedSound>
+		<volume>0.200000</volume>
+		<loop>true</loop>
+	</actor>
+	<actor>
+		<TYPE>ObstacleActor</TYPE>
+		<pos.x>-17.343721</pos.x>
+		<pos.y>-764.585876</pos.y>
+		<grafix_id>0</grafix_id>
+		<scale>1.000000</scale>
+		<orientation>NormalOrientation</orientation>
+		<soundOnHit>wallHit</soundOnHit>
+	</actor>
 	<levelConfig>
 		<spawnBubble>true</spawnBubble>
-		<levelHeight>1</levelHeight>
+		<levelHeight>3</levelHeight>
 	</levelConfig>
 </state>
 

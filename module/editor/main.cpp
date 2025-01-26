@@ -16,6 +16,8 @@ InputManager*   InputManager::instance = nullptr;
 
 int main(void)
 {
+    InitAudioDevice();
+
     GameState state {};
     EditorState edState {};
     Game game {state};
@@ -41,6 +43,6 @@ int main(void)
             loadFromFile("default",state);
         }
     );
-
+    CloseAudioDevice();
     return 0;
 }
